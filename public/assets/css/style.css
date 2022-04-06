@@ -490,3 +490,139 @@ cursor: pointer;
         transform: rotate(360deg);
         transition: all 1s;
       }
+
+      .profile-image-box
+      {
+          width:200px;
+          height:200px;
+          border:6px solid #B88A40;
+          border-radius:50%;
+          margin:0 auto;
+          display:block;
+      }
+      .profilebox
+      {
+        width: 18rem;box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.25);border-radius: 20px;
+        margin:0 auto;
+        display:block;
+      }
+.profile-img-thumb
+{
+    margin:10px;
+}
+.profile-info
+{
+    border-radius:20px;
+    background-color:#fff;
+    box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.25);
+    padding-top:25px;
+    padding-left:25px;
+}
+.profile-name
+{
+    font-size:30px;
+    font-weight:bold;
+}
+.profile-id
+{
+    font-size:15px;
+    font-weight:bold;
+}
+.profiledetail-list
+{
+    list-style-type: none;
+    padding-left:0px !important;
+    margin-top:30px;
+}
+.profiledetail-list li
+{
+    margin:30px 0px;
+}
+.profiledetail-list span
+{
+    margin-left:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.sidebarlist
+{
+    margin:0 auto;
+    display:block;
+}
+.sidebarlist .list-group-item
+{
+    width: 20rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin:10px 0px;
+    display: block;
+    padding:20px 30px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.detailssection
+{
+    background-color:#fff;
+}
+.detailssection
+{
+    border-radius:20px;
+    background-color:#fff;
+    box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.25);
+    padding-top:35px;
+    padding-bottom:35px;
+    padding-left:35px;
+    margin-top:35px;
+}
+.detailssection span
+{
+    margin-left:20px;
+    font-size:25px;
+    font-weight:bold;
+}
+.qn-details-ul
+{
+    list-style-type: none;
+    padding-left:0px;
+}
+.qn-details-ul li
+{
+    margin:15px 0px;
+    font-size:18px;
+    font-weight:bold;
+    color:#6d1140;
+}
+.ans-details-ul
+{
+    list-style-type: none;
+    padding-left:0px;
+}
+.ans-details-ul li
+{
+    margin:15px 0px;
+    font-size:18px;
+    font-weight:bold;
+    color:#000000;
+}
+.head
+{
+    width:100%;
+    display: flex;
+}
+
+.detailssection th
+{
+    margin:15px 0px;
+    font-size:18px;
+    font-weight:bold;
+    color:#6d1140;
+}
+.detailssection td
+{
+    margin:15px 0px;
+    font-size:18px;
+    font-weight:bold;
+    color:#000000;
+}

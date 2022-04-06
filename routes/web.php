@@ -7,6 +7,7 @@ use App\Http\Controllers\HoroscopeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\myprofileController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ProfessionalController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::view('religion','pages.religion');
 Route::view('images','pages.images');
 Route::view('forgott','pages.forgott');
 Route::view('forgott_otp','pages.forgott_otp');
+Route::view('myprofile','pages.myprofile');
 
 Route::Post('login',[LoginController::class,'authenticate']);
 Route::post('postData',[registerController::class,'passData']);
@@ -85,6 +87,8 @@ Route::resource('preference',PreferenceController::class)->middleware('shareAuth
 Route::resource('image',ImageController::class)->middleware('shareAuth');
 
 Route::resource('aboutme',aboutmeController::class)->middleware('shareAuth');
+
+Route::resource('myprofile',myprofileController::class)->middleware('shareAuth');
 
 
 

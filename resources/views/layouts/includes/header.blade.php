@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light navbar-design fixed-top">
     <div class="container-fluid">
-        <img src="assets/images/LOGO_for App.png" style="width:100px;margin-left:40px" class="img-fluid navbar-brand">
+        <img src="../assets/images/LOGO_for App.png" style="width:100px;margin-left:40px" class="img-fluid navbar-brand">
       <!-- <a class="navbar-brand" href="#">Navbar</a> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,6 +14,14 @@
           <li class="nav-item">
             <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-globe"></i>&nbsp;&nbsp;Premium</a>
           </li>
+          @if(session('LoggedUser') == "")
+
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-people-fill"></i>&nbsp;&nbsp;Matches</a>
+              </li>
+          @endif
+
           <li class="nav-item">
             <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-headset"></i>&nbsp;&nbsp;Support</a>
           </li>

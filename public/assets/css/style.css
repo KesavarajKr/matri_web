@@ -516,7 +516,7 @@ cursor: pointer;
     background-color:#fff;
     box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.25);
     padding-top:25px;
-    padding-left:25px;
+    /* padding-left:25px; */
 }
 .profile-name
 {
@@ -625,4 +625,93 @@ cursor: pointer;
     font-size:18px;
     font-weight:bold;
     color:#000000;
+}
+.matchesbtn
+{
+    padding-left:0px;
+}
+.matchesbtn li
+{
+    list-style-type: none;
+    margin:10px auto;
+    display: block;
+    padding:10px 0px;
+    width:100%;
+    background-color:#6d1140;
+    border-radius:10px;
+}
+.matchesbtn li a
+{
+    text-decoration:none;
+    padding:20px 0px;
+    color:#fff;
+
+}
+.matches-container
+{
+    border-radius: 20px;
+    box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.25);
+    padding-top:25px;
+    margin-top:25px;
+    padding-bottom:0px;
+}
+
+.matchimg
+{
+    border:4px solid #D9C180;
+    padding:20px;
+    border-radius:20px;
+}
+
+.matches-container .profile-name
+{
+    font-weight:bold;
+
+    font-size:35px;
+}
+.matches-container .profile-name sub
+{
+    margin-left:10px;
+    font-size:15px;
+}
+
+.profilematches span
+{
+    margin-left:20px;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.profilematches
+{
+    padding:15px 15px !important;
+}
+
+.cardbottom
+{
+    background-color:#FFDDED;
+    padding:20px;
+    width:100%;
+    padding-right:25px;
+    padding-left:25px;
+    margin-top:20px;
+    border-radius:0px 0px 20px 20px;
+}
+.cardbottom span
+{
+    margin-left:20px;
+    color:#6d1140;
+    font-weight:bold
+}
+
+.biobtn
+{
+    background-image: linear-gradient(to right, #E17824 0%, #E17824 41%, #DB356F 100%) !important;
+    border:0px !important;
+    padding:15px 0px;
+    margin-top:20px;
+}
+.biobtn span
+{
+    margin-left:15px;
 }

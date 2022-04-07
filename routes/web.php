@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\aboutmeController;
 use App\Http\Controllers\basicdetailsController;
+use App\Http\Controllers\bioController;
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\favouriteController;
 use App\Http\Controllers\HoroscopeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MatchesController;
 use App\Http\Controllers\myprofileController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ProfessionalController;
@@ -41,6 +44,7 @@ Route::view('images','pages.images');
 Route::view('forgott','pages.forgott');
 Route::view('forgott_otp','pages.forgott_otp');
 Route::view('myprofile','pages.myprofile');
+// Route::view('premiummatches','pages.premium');
 
 Route::Post('login',[LoginController::class,'authenticate']);
 Route::post('postData',[registerController::class,'passData']);
@@ -72,6 +76,7 @@ Route::post('updatepassword',[registerController::class,'updatepassword']);
 
 
 
+
 Route::resource('religion',religionController::class)->middleware('shareAuth');
 
 Route::resource('family',FamilyController::class)->middleware('shareAuth');
@@ -90,6 +95,16 @@ Route::resource('aboutme',aboutmeController::class)->middleware('shareAuth');
 
 Route::resource('myprofile',myprofileController::class)->middleware('shareAuth');
 
+Route::resource('matches',MatchesController::class)->middleware('shareAuth');
 
+Route::resource('bio',bioController::class)->middleware('shareAuth');
+
+// Route::resource('favourite',favouriteController::class)->middleware('shareAuth');
+
+Route::get('premiummatches',[MatchesController::class,'premiumMatches'])->middleware('shareAuth');
+
+Route::POST('addFavourite',[favouriteController::class,'addFavourite'])->middleware('shareAuth');
+
+Route::post('sendproposal',[bioController::class,'sendproposal'])->middleware('shareAuth');
 
 

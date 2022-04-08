@@ -643,7 +643,9 @@ cursor: pointer;
 .matchesbtn li a
 {
     text-decoration:none;
+    text-align:left;
     padding:20px 0px;
+    width:100px;
     color:#fff;
 
 }
@@ -662,11 +664,20 @@ cursor: pointer;
     padding:20px;
     border-radius:20px;
 }
-
+.matchesbtn img
+{
+    margin-left:20px;
+}
+.matchesbtn span{
+    margin-left:10px;
+}
+.activematches
+{
+    background-image: linear-gradient(to right, #E17824 0%, #E17824 41%, #DB356F 100%) !important;
+}
 .matches-container .profile-name
 {
     font-weight:bold;
-
     font-size:35px;
 }
 .matches-container .profile-name sub
@@ -714,4 +725,10 @@ cursor: pointer;
 .biobtn span
 {
     margin-left:15px;
+}
+.submitbtn
+{
+    background-image: linear-gradient(to right, #E17824 0%, #E17824 41%, #DB356F 100%) !important;
+    border:0px !important;
+    margin-top:20px;
 }

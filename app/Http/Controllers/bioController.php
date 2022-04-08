@@ -49,7 +49,11 @@ class bioController extends Controller
     public function show($id)
     {
         $register = register::find($id);
+        $userid = session('LoggedUser');
         $varanid = $register->varan_id;
+        date_default_timezone_set("Asia/Kolkata");
+       $datetime = date('Y-m-d h:i:s');
+
 
         $viewid=DB::table('registers')
         ->select('registers.Name', 'registers.age','registers.varan_id','registers.dob','registers.Gender','regli_tb.religion_name','registers.email_id','registers.mobile_no','registers.varan_id', 'registers.no_of_children','registers.no_of_children','registers.whatsapp_no','registers.com_address','registers.municipality_panchayat','registers.other_countryaddress','registers.residential_address','subcastes.subcategory_name','subcastes.Category_name','registers.eduction_detail as edudetails','registers.job_detail','jobdescription_tb.name', 'castes.Caste_name','phy_tb.phy_name','btype_tb.btype','complexion_tb.com_name','height_tb.height_name','matrial_tb.matrial_name','countries.country_name','states.state_name','cities.city_name','eductiondetails_tb.name as eduname','registers.annual_income','registers.father_name','registers.father_occuption','registers.mother_name','registers.mother_occuption','registers.total_sibblings','registers.elder_sister','registers.younger_sister','registers.elder_brother','registers.younger_brother','registers.about_myself','rasi_tb.name as rasi','registers.laknam','Star.name as star','registers.dosam','registers.birth_time','registers.blood_group','job_country.country_name as jobcountry','job_state.state_name as jobstate','job_city.job_city_name as jobcity')
@@ -96,8 +100,30 @@ class bioController extends Controller
         // ->leftJoin('job_state','partners.job_state','=','job_state.state_id')
         // ->leftJoin('job_city','partners.job_city','=','job_city.job_city_id')
         ->where('partners.varan_id', '=', $varanid)->first();
+        // $currentURL = Request::url();
 
-        return view('pages.bio',compact('viewid','partners'));
+        $viewedprofile = DB::table('trackings')->insert(
+            array(
+                   'user_varan_id'     =>   $userid,
+                   'partner_varan_id'   =>   $varanid,
+                   'purpose'   =>   "Profile_Viewed",
+                   'created_at' => $datetime
+            )
+        );
+            $allinterest = DB::table('interests')
+            ->select('*')
+            ->where('user_varan_id','=',$userid)
+            ->where('liked_varan_id','=',$varanid)
+            ->get();
+
+            $favourite = DB::table('favourites')
+            ->select('*')
+            ->where('user_varan_id','=',$userid)
+            ->where('liked_varan_id','=',$varanid)
+            ->where('status','=','liked')
+            ->get();
+
+        return view('pages.bio',compact('viewid','partners','allinterest','favourite'));
     }
 
     /**
@@ -150,14 +176,14 @@ class bioController extends Controller
         date_default_timezone_set("Asia/Kolkata");
        $datetime = date('Y-m-d h:i:s');
        $datetime = date('Y-m-d H:i:s',strtotime('+30 second',strtotime($datetime)));
-        $saveinterest = DB::table('trackings')->insert(
-            array(
-                   'user_varan_id'     =>   $uservaranid,
-                   'partner_varan_id'   =>   $partnervaranid,
-                   'purpose'   =>   "Send_Interest",
-                   'created_at' => $datetime
-            )
-        );
+            $saveinterest = DB::table('trackings')->insert(
+                array(
+                    'user_varan_id'     =>   $uservaranid,
+                    'partner_varan_id'   =>   $partnervaranid,
+                    'purpose'   =>   "Send_Interest",
+                    'created_at' => $datetime
+                )
+            );
 
         if($saveinterest)
         {

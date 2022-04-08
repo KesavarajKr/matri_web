@@ -13,16 +13,16 @@
                                     <div class="card-body">
                                         <ul class="matchesbtn">
                                             {{-- {{$varanid}} --}}
-                                            <li class="activematches"><a href="/premiummatches" class=""><img src="assets/images/premiummatches.png" class="img-fluid" style="width:25px"><span class="">Premium Matches ()</span></a></li>
-<li><a href="/newmatches" class=""><img src="assets/images/newmatches.png" class="img-fluid" style="width:25px"><span class="">New Matches ()</span></a></li>
-<li><a href="/mutualmatches" class=""><img src="assets/images/mutualmatches.png" class="img-fluid" style="width:25px"><span class="">Mutual Matches ()</span></a></li>
-<li><a href="" class=""><img src="assets/images/dailysuggesion.png" class="img-fluid" style="width:25px"><span class="">Daily Matches ()</span></a></li>
-<li><a href="/locationmatches" class=""><img src="assets/images/locationmatches.png" class="img-fluid" style="width:25px"><span class="">Location Matches ()</span></a></li>
-<li><a href="/professionalmatches" class=""><img src="assets/images/professionalmatches.png" class="img-fluid" style="width:25px"><span class="">Professional Matches ()</span></a></li>
-<li><a href="/starmatches" class=""><img src="assets/images/star_matches.png" class="img-fluid" style="width:25px"><span class="">Star Matches ()</span></a></li>
-<li><a href="/educationmatches" ><img src="assets/images/educationmatches.png" class="img-fluid" style="width:25px"><span class="">Education Matches ()</span></a></li>
-<li><a href="/whoviewprofiles" class=""><img src="assets/images/whoviewedprofile.png" class="img-fluid" style="width:25px"><span class="">Who Viewed Profiles ()</span></a></li>
-<li><a href="/myviewedhistory" class=""><img src="assets/images/myviewedhistory.png" class="img-fluid" style="width:25px"><span class="">My Viewed History ()</span></a></li>
+                                            <li ><a href="/premiummatches" class=""><img src="assets/images/premiummatches.png" class="img-fluid" style="width:25px"><span class="">Premium Matches ()</span></a></li>
+                                            <li class="activematches"><a href="/newmatches" class=""><img src="assets/images/newmatches.png" class="img-fluid" style="width:25px"><span class="">New Matches ()</span></a></li>
+                                            <li><a href="/mutualmatches" class=""><img src="assets/images/mutualmatches.png" class="img-fluid" style="width:25px"><span class="">Mutual Matches ()</span></a></li>
+                                            <li><a href="" class=""><img src="assets/images/dailysuggesion.png" class="img-fluid" style="width:25px"><span class="">Daily Matches ()</span></a></li>
+                                            <li><a href="/locationmatches" class=""><img src="assets/images/locationmatches.png" class="img-fluid" style="width:25px"><span class="">Location Matches ()</span></a></li>
+                                            <li><a href="/professionalmatches" class=""><img src="assets/images/professionalmatches.png" class="img-fluid" style="width:25px"><span class="">Professional Matches ()</span></a></li>
+                                            <li><a href="/starmatches" class=""><img src="assets/images/star_matches.png" class="img-fluid" style="width:25px"><span class="">Star Matches ()</span></a></li>
+                                            <li><a href="/educationmatches" ><img src="assets/images/educationmatches.png" class="img-fluid" style="width:25px"><span class="">Education Matches ()</span></a></li>
+                                            <li><a href="/whoviewprofiles" class=""><img src="assets/images/whoviewedprofile.png" class="img-fluid" style="width:25px"><span class="">Who Viewed Profiles ()</span></a></li>
+                                            <li><a href="/myviewedhistory" class=""><img src="assets/images/myviewedhistory.png" class="img-fluid" style="width:25px"><span class="">My Viewed History ()</span></a></li>
                                         </ul>
 
                                     </div>
@@ -31,8 +31,10 @@
                         </div>
 
                         <div class="col-lg-9">
-                            @if($premium)
-                                @foreach ($premium as $profiles)
+
+                            @if($newmatches)
+                                @foreach ($newmatches as $profiles)
+
                                 <div class="matches-container">
                                     <div class="container">
                                         <div class="row">
@@ -89,26 +91,30 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-lg-4">
+                                                    {{-- {{}} --}}
 
                                                     @if($profiles->fav == 0)
 
-                                                    <form method="POST" action="/addFavourite">
-                                                        @csrf
-                                                        <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
-                                                        <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
-                                                        <input type="hidden" name="status" value="liked">
-                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
-                                                    </form>
-                                                    @else
+                                                        <form method="POST" action="/addFavourite">
+                                                            @csrf
+                                                            <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                                                            <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
+                                                            <input type="hidden" name="status" value="liked">
+                                                            <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
+                                                        </form>
+                                                        @else
 
-                                                    <form method="POST" action="/addFavourite">
-                                                        @csrf
-                                                        <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
-                                                        <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
-                                                        <input type="hidden" name="status" value="liked">
-                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
-                                                    </form>
-                                                @endif
+                                                        <form method="POST" action="/addFavourite">
+                                                            @csrf
+                                                            <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                                                            <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
+                                                            <input type="hidden" name="status" value="liked">
+                                                            <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
+                                                        </form>
+                                                    @endif
+
+
+
 
                                                 </div>
                                                 <div class="col-lg-4">

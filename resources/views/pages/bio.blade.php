@@ -100,26 +100,47 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <form method="POST" action="/sendproposal">
-                                            @csrf
-                                            <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
-                                            <input type="hidden" name="partnervaranid" value="{{$viewid->varan_id}}">
-                                            <input type="hidden" name="status" value="Interest">
-                                            <button class="btn btn-primary biobtn w-100" ><img src="../assets/images/send.png" class="img-fluid" style="width:30px"><span>Send Proposal Request</span></button>
-                                        </form>
+
+                                        @if ($allinterest->count() == 1)
+                                            <button class="btn btn-primary biobtn w-100" ><img src="../assets/images/send.png" class="img-fluid" style="width:30px"><span>Already Request Sent</span></button>
+                                            @else
+
+                                            <form method="POST" action="/sendproposal">
+                                                @csrf
+                                                <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                                                <input type="hidden" name="partnervaranid" value="{{$viewid->varan_id}}">
+                                                <input type="hidden" name="status" value="Interest">
+                                                <button class="btn btn-primary biobtn w-100" ><img src="../assets/images/send.png" class="img-fluid" style="width:30px"><span>Send Proposal Request</span></button>
+                                            </form>
+                                        @endif
+
 
                                     </div>
                                     <div class="col-lg-4">
 
+                                            @if($favourite->count() == 1)
                                             <form method="POST" action="/addFavourite">
                                                 @csrf
                                                 <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
                                                 <input type="hidden" name="partnervaranid" value="{{$viewid->varan_id}}">
                                                 <input type="hidden" name="status" value="liked">
                                                 <button class="btn btn-primary w-100 biobtn"><img src="../assets/images/fav.png" class="img-fluid" style="width:30px"><span>
-                                                    Add to Favourite
+                                                    Already in favourite
                                                 </span></button>
                                             </form>
+
+                                                @else
+                                                <form method="POST" action="/addFavourite">
+                                                    @csrf
+                                                    <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                                                    <input type="hidden" name="partnervaranid" value="{{$viewid->varan_id}}">
+                                                    <input type="hidden" name="status" value="liked">
+                                                    <button class="btn btn-primary w-100 biobtn"><img src="../assets/images/fav.png" class="img-fluid" style="width:30px"><span>
+                                                        Add to Favourite
+                                                    </span></button>
+                                                </form>
+                                            @endif
+
 
 
                                     </div>

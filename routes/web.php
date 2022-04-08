@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\religionController;
+use App\Http\Controllers\searchController;
 use App\Http\Controllers\VideoController;
 
 /*
@@ -99,9 +100,27 @@ Route::resource('matches',MatchesController::class)->middleware('shareAuth');
 
 Route::resource('bio',bioController::class)->middleware('shareAuth');
 
+Route::resource('search',searchController::class)->middleware('shareAuth');
+
 // Route::resource('favourite',favouriteController::class)->middleware('shareAuth');
 
 Route::get('premiummatches',[MatchesController::class,'premiumMatches'])->middleware('shareAuth');
+
+Route::get('newmatches',[MatchesController::class,'newmatches'])->middleware('shareAuth');
+
+Route::get('mutualmatches',[MatchesController::class,'mutualmatches'])->middleware('shareAuth');
+
+Route::get('locationmatches',[MatchesController::class,'locationmatches'])->middleware('shareAuth');
+
+Route::get('professionalmatches',[MatchesController::class,'professionalmatches'])->middleware('shareAuth');
+
+Route::get('starmatches',[MatchesController::class,'starmatches'])->middleware('shareAuth');
+
+Route::get('educationmatches',[MatchesController::class,'educationmatches'])->middleware('shareAuth');
+
+Route::get('whoviewprofiles',[MatchesController::class,'whoviewprofiles'])->middleware('shareAuth');
+
+Route::get('myviewedhistory',[MatchesController::class,'myviewedhistory'])->middleware('shareAuth');
 
 Route::POST('addFavourite',[favouriteController::class,'addFavourite'])->middleware('shareAuth');
 

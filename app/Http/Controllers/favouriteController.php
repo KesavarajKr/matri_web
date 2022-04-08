@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class favouriteController extends Controller
 {
@@ -123,6 +124,8 @@ class favouriteController extends Controller
 
             if($favourite)
             {
+                // $data = $request->uservaranid;
+                // return Redirect::back()->withInput($data);
 
                 return back()->with('success',"Favourite Added");
             }
@@ -145,6 +148,7 @@ class favouriteController extends Controller
 
             if($fravouritetrack)
             {
+                // return back()->with(['favourites' => $favourites]);
                 return back()->with('success','Favourite Removed');
             }
         }

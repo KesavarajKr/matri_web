@@ -18,7 +18,7 @@
 
             @else
             <li class="nav-item">
-                <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-people-fill"></i>&nbsp;&nbsp;Matches</a>
+                <a class="nav-link" href="/newmatches"><i style="color:#fff" class="bi bi-people-fill"></i>&nbsp;&nbsp;Matches</a>
               </li>
           @endif
 

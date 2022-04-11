@@ -32,7 +32,7 @@
                                     <input type="hidden" name="createdby" value="{{$createdby}}">
                                     <input type="hidden" name="gender" value="{{$gender}}">
                                     <input type="hidden" name="name" value="{{$name}}">
-                                    <input type="text" name="dob" value="{{$dob}}">
+                                    <input type="hidden" name="dob" value="{{$dob}}">
                                     <input type="hidden" name="email" value="{{$email}}">
                                     <input type="hidden" name="mblnum" value="{{$mblnum}}">
                                     <input type="hidden" name="montongue" value="{{$montongue}}">

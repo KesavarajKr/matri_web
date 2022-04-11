@@ -60,21 +60,28 @@ class registerController extends Controller
         $pass = $request->password;
 
         $code=rand(1000,10000);
-		     $phone = $mblnum;
+        $token="87c13d427e12b47a9f6535878483d96a";
+        $credit="2";
+        $sender="STSCBE";
+        $mobile_number=$mblnum;
 
-		  //   require_once('sendsms/sendsms.php');
-$username="pepzop";
+        //Enter your text message
+        $message="OTP for your Sai Techno Solutions Login Verification is $code. Do Not Share this with anyone. - Sai
+    Techno Solutions";
 
-//Enter your login password
-$password="Pepzop@123";
-
-//Enter your text message
-$message="Your pepzop Login verfication OTP code is $code - PEPZOP";
+    $url="http://sms.saitechnosolutions.net/sendsms/?token=87c13d427e12b47a9f6535878483d96a&credit=3&sender=".urlencode($sender)."&message=".urlencode($message)."&number=".urlencode($mobile_number)."&templateid=1707164931307644321";
 
 
-//Enter your Sender ID
-$sender="PEPZOP";
 
+
+             $ch = curl_init();
+             curl_setopt($ch, CURLOPT_POST, true);
+             curl_setopt($ch, CURLOPT_URL, $url);
+             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+             curl_setopt($ch,CURLOPT_HEADER,false);
+             $response = curl_exec($ch);
+             $err = curl_error($ch);
+             curl_close($ch);
 //Enter your receiver mobile number
 $mobile_number=$mblnum;
 
@@ -286,17 +293,28 @@ DB::table('otp_db')->insert(
             $phone = $mobileno;
 
          //   require_once('sendsms/sendsms.php');
-$username="pepzop";
+         $token="87c13d427e12b47a9f6535878483d96a";
+         $credit="2";
+         $sender="STSCBE";
+         $mobile_number=$phone;
 
-//Enter your login password
-$password="Pepzop@123";
+         //Enter your text message
+         $message="OTP for your Sai Techno Solutions Login Verification is $code. Do Not Share this with anyone. - Sai
+     Techno Solutions";
 
-//Enter your text message
-$message="Your pepzop Login verfication OTP code is $code - PEPZOP";
+     $url="http://sms.saitechnosolutions.net/sendsms/?token=87c13d427e12b47a9f6535878483d96a&credit=3&sender=".urlencode($sender)."&message=".urlencode($message)."&number=".urlencode($mobile_number)."&templateid=1707164931307644321";
 
 
-//Enter your Sender ID
-$sender="PEPZOP";
+
+
+              $ch = curl_init();
+              curl_setopt($ch, CURLOPT_POST, true);
+              curl_setopt($ch, CURLOPT_URL, $url);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch,CURLOPT_HEADER,false);
+              $response = curl_exec($ch);
+              $err = curl_error($ch);
+              curl_close($ch);
 
 //Enter your receiver mobile number
 $mobile_number=$mobileno;

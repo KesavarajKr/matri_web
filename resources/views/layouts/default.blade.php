@@ -78,7 +78,7 @@
 
 <script>
     $(document).ready(function (){
-                 var count = 15;
+                 var count = 30;
 				//  var background =$('.col-lg-12')
                 function myCount() {
                 if (count < 0) {

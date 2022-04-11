@@ -68,7 +68,26 @@ body
     box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.5);
 
 }
-
+.select2-container--default .select2-selection--multiple
+{
+    border-radius:50px !important;
+    background-image: linear-gradient(to right, #cf97a2 0%, #cf97a2 41%, #cbc2d9 100%) !important;
+    background-color:#CBB7CC !important;
+    border:1px solid #6d1140 !important;
+    text-align:left !important;
+    /* height:45px !important; */
+    padding:7px !important;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple
+{
+    border-radius:50px !important;
+    background-image: linear-gradient(to right, #cf97a2 0%, #cf97a2 41%, #cbc2d9 100%) !important;
+    background-color:#CBB7CC !important;
+    border:1px solid #6d1140 !important;
+    text-align:left !important;
+    /* height:45px !important; */
+    padding:7px !important;
+}
 .select2-container--default .select2-selection--single
 {
     border-radius:50px !important;
@@ -731,4 +750,31 @@ cursor: pointer;
     background-image: linear-gradient(to right, #E17824 0%, #E17824 41%, #DB356F 100%) !important;
     border:0px !important;
     margin-top:20px;
+}
+.searchbox
+{
+    padding:15px;
+}
+.accountsetting
+{
+    padding:25px;
+}
+.accountbtn
+{
+    padding:20px;
+    background-color:#fff;
+    width:100%;
+    margin:0 auto;
+    display:block;
+    font-weight:bold;
+    color:#6d1140;
+    text-align:left;
+}
+
+.bg-overlay
+{
+    background-color:rgba(110, 17, 65, 0.74);
+    padding:10px;
+    margin-top:25px;
+    border-radius:15px;
 }

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\religionController;
 use App\Http\Controllers\searchController;
+use App\Http\Controllers\settingsController;
 use App\Http\Controllers\VideoController;
 
 /*
@@ -102,6 +103,8 @@ Route::resource('bio',bioController::class)->middleware('shareAuth');
 
 Route::resource('search',searchController::class)->middleware('shareAuth');
 
+Route::resource('settings',settingsController::class)->middleware('shareAuth');
+
 // Route::resource('favourite',favouriteController::class)->middleware('shareAuth');
 
 Route::get('premiummatches',[MatchesController::class,'premiumMatches'])->middleware('shareAuth');
@@ -125,5 +128,7 @@ Route::get('myviewedhistory',[MatchesController::class,'myviewedhistory'])->midd
 Route::POST('addFavourite',[favouriteController::class,'addFavourite'])->middleware('shareAuth');
 
 Route::post('sendproposal',[bioController::class,'sendproposal'])->middleware('shareAuth');
+
+Route::post('searchresult',[searchController::class,'searchresult'])->middleware('shareAuth');
 
 

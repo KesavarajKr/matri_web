@@ -26,7 +26,7 @@
             <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-headset"></i>&nbsp;&nbsp;Support</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-search"></i>&nbsp;&nbsp;Search</a>
+            <a class="nav-link" href="/search"><i style="color:#fff" class="bi bi-search"></i>&nbsp;&nbsp;Search</a>
           </li>
           <div class="d-flex">
               @if(session('LoggedUser') == "")
@@ -54,21 +54,21 @@
             </div>
             <div class="profileimg">
                 <img src="https://www.freeiconspng.com/uploads/customers-icon-3.png" class="img-fluid">
-
+                <div class="detail">
+                    {{-- <h3>name</h3> --}}
+                    <h3>{{session('LoggedUser')}}</h3>
+                </div>
             </div>
 
       </div>
       <div class="bottom-content">
             <ul class="sidebar-list">
-                <li><a href="/aboutme"><i class="bi bi-person-circle"></i>Edit Profile</a></li>
-                <li><a href=""><i class="bi bi-bell-fill"></i>Notifications</a></li>
-                <li><a href=""><i class="bi bi-people-fill"></i>Matches</a></li>
+                <li><a href="/aboutme"><i class="bi bi-person-circle"></i>My Profile</a></li>
                 <li><a href=""><i class="bi bi-person-heart"></i>Favourite People</a></li>
                 <li><a href=""><i class="bi bi-person-heart"></i>Upgrade Premium</a></li>
-                <li><a href=""><i class="bi bi-headset"></i>Contact Us</a></li>
-                <li><a href=""><i class="bi bi-person-bounding-box"></i>Privacy</a></li>
+
                 <li><a href=""><i class="bi bi-sliders"></i>Settings</a></li>
-                <li><a href=""><i class="bi bi-share-fill"></i>Share</a></li>
+
                 <li><a href="/logout"><i class="bi bi-power"></i>Logout</a></li>
             </ul>
       </div>

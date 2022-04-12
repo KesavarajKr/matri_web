@@ -131,4 +131,12 @@ Route::post('sendproposal',[bioController::class,'sendproposal'])->middleware('s
 
 Route::post('searchresult',[searchController::class,'searchresult'])->middleware('shareAuth');
 
+Route::post('photoprivacy',[settingsController::class,'photoprivacy'])->middleware('shareAuth');
+
+Route::post('contactprivacy',[settingsController::class,'contactprivacy'])->middleware('shareAuth');
+
+Route::post('bioprivacy',[settingsController::class,'bioprivacy'])->middleware('shareAuth');
+
+Route::post('horoscopeprivacy',[settingsController::class,'horoscopeprivacy'])->middleware('shareAuth');
+
 

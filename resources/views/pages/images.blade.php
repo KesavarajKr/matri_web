@@ -166,7 +166,7 @@
                     <label style="margin-bottom:10px;font-weight:bold">Select Your file</label>
                     <select class="form-control" name="horoscopetitle" required>
                         <option value="">-- Choose File --</option>
-                        <option value="Horoscope file">Horoscope file</option>
+                        <option value="Horoscope">Horoscope file</option>
                         <option value="Aadhar Card">Aadhar Card</option>
                         <option value="Driving License">Driving License</option>
                     </select>

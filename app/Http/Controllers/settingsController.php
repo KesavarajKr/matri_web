@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class settingsController extends Controller
 {
@@ -13,7 +14,24 @@ class settingsController extends Controller
      */
     public function index()
     {
-        return view('pages.settings');
+        $varanid = session('LoggedUser');
+       $register = DB::table('registers')
+        ->select('*')
+        ->where('varan_id','=',$varanid)
+        ->first();
+
+        $horoscope = DB::table('horoscopes')
+        ->select('*')
+        ->where('varan_id','=',$varanid)
+        ->where('title','=','Horoscope')
+        ->first();
+
+        $images = DB::table('images')
+        ->select('*')
+        ->where('varanid','=',$varanid)
+        ->first();
+        // dd($images);
+        return view('pages.settings',compact('register','horoscope','images'));
     }
 
     /**
@@ -81,4 +99,72 @@ class settingsController extends Controller
     {
         //
     }
+
+    public function photoprivacy(Request $request)
+    {
+        $varanid=$request -> uservaranid;
+        $status=$request -> status;
+
+                    $updatedata= DB::table('images')->where('varanid',$varanid)
+                    ->update(array(
+                        'privacy_type'=>$status,
+                    ));
+                    if($updatedata)
+                    {
+                        return redirect()->back()->with('success', 'Photo Privacy Updated');
+                    }
+
+    }
+
+    public function contactprivacy(Request $request)
+    {
+        $varanid=$request -> uservaranid;
+       $status=$request -> status;
+
+                   $updatedata= DB::table('registers')->where('varan_id',$varanid)
+                   ->update(array(
+                       'cprivacy_setting'=>$status,
+                   ));
+
+                   if($updatedata)
+                    {
+                        return redirect()->back()->with('success', 'Contact Privacy Updated');
+                    }
+    }
+
+    public function bioprivacy(Request $request)
+    {
+        $varanid=$request -> uservaranid;
+       $status=$request -> status;
+
+                   $updatedata= DB::table('registers')->where('varan_id',$varanid)
+                   ->update(array(
+                       'bprivacy_setting'=>$status,
+                   ));
+
+                   if($updatedata)
+                    {
+                        return redirect()->back()->with('success', 'Bio Privacy Updated');
+                    }
+    }
+
+    public function horoscopeprivacy(Request $request)
+    {
+        $varanid=$request -> uservaranid;
+        $status=$request -> status;
+
+        $updatedata= DB::table('horoscopes')
+        ->where('varan_id','=',$varanid)
+        ->where('title','=','Horoscope')
+        ->update(array(
+            'privacy_setting'=>$status,
+        ));
+
+        if($updatedata)
+        {
+            return redirect()->back()->with('success', 'Horoscope Privacy Updated');
+        }
+    }
+
+
 }

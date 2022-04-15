@@ -3,6 +3,7 @@
 use App\Http\Controllers\aboutmeController;
 use App\Http\Controllers\basicdetailsController;
 use App\Http\Controllers\bioController;
+use App\Http\Controllers\cashfreeController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\favouriteController;
 use App\Http\Controllers\HoroscopeController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MatchesController;
 use App\Http\Controllers\myprofileController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\ProfessionalController;
 use Illuminate\Support\Facades\Route;
@@ -105,7 +107,9 @@ Route::resource('search',searchController::class)->middleware('shareAuth');
 
 Route::resource('settings',settingsController::class)->middleware('shareAuth');
 
-// Route::resource('favourite',favouriteController::class)->middleware('shareAuth');
+Route::resource('favourite',favouriteController::class)->middleware('shareAuth');
+
+Route::resource('package',PackageController::class)->middleware('shareAuth');
 
 Route::get('premiummatches',[MatchesController::class,'premiumMatches'])->middleware('shareAuth');
 
@@ -138,5 +142,18 @@ Route::post('contactprivacy',[settingsController::class,'contactprivacy'])->midd
 Route::post('bioprivacy',[settingsController::class,'bioprivacy'])->middleware('shareAuth');
 
 Route::post('horoscopeprivacy',[settingsController::class,'horoscopeprivacy'])->middleware('shareAuth');
+
+Route::post('searchvaranid',[searchController::class,'searchvaranid'])->middleware('shareAuth');
+
+Route::post('userpaymentreq',[PackageController::class,'userpaymentreq'])->middleware('shareAuth');
+
+
+Route::view('paymentresponse','pages.paymentresponse');
+
+Route::resource('redirect_url',cashfreeController::class)->middleware('shareAuth');
+
+
+Route::post('redirectpage',[cashfreeController::class,'redirectpage'])->middleware('shareAuth');
+
 
 

@@ -9,8 +9,17 @@
                     <div class="row">
                         <div class="col-lg-3 align-items-center">
                             <div class="card searchbox">
+                                <h5 style="font-weight:bold;margib-bottom:15px">ID Search</h5>
+                                <form method="POST" action="/searchvaranid">
+                                    @csrf
+                                    <label style="margin-bottom:10px;">Enter Varan ID</label>
+                                    <input type="text" class="form-control form-design-2" name="varanid" maxlength="12" required>
+                                    <button type="submit" class="btn btn-primary w-100 submitbtn">Search</button>
+                                </form>
+                            </div>
+                            <div class="card searchbox mt-3">
 
-                                    <h3>Advanced Search</h3>
+                                    <h5 style="font-weight:bold">Advanced Search</h5>
                                     <div class="searchbox">
                                     <form method="POST" action="/searchresult">
                                         @csrf

@@ -221,12 +221,14 @@ DB::table('otp_db')->insert(
 
         if($otpcheck == 1)
         {
+            $defaulttvalue = 1000;
             $invID =0;
             $maxValue = DB::table('registers')->max('id');
-            $invID=$maxValue+1;
+            $invID=($defaulttvalue)+($maxValue+1);
+            // $defaulttvalue = ($defaulttvalue)+($maxValue);
             $invID = str_pad($invID, 4, '0', STR_PAD_LEFT);
 
-            $MatId="VARAN".$invID;
+            $MatId="VV".$invID;
             // print($MatId);
             // exit;
 

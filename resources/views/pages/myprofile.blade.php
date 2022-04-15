@@ -11,15 +11,14 @@
                             <div class="card profilebox">
 
                                     <div class="card-body">
+                                        @if($images)
                                         <div class="profile-image-box">
-                                            <img src="images/1649049933.png" class="img-fluid">
+                                            <img src="/images/{{$images->image_name}}" class="img-fluid">
                                         </div>
-                                        <div class="owl-carousel mt-4">
-                                            <div>
-                                                <div class="profile-img-thumb">
-                                                    <img src="images/1649049933.png" class="img-fluid">
-                                                </div>
-                                            </div>
+                                        @endif
+
+                                        {{-- <div class="owl-carousel mt-4">
+
                                             <div>
                                                 <div class="profile-img-thumb">
                                                     <img src="images/1649049933.png" class="img-fluid">
@@ -36,8 +35,9 @@
                                                 </div>
                                             </div>
 
-                                          </div>
+                                          </div> --}}
                                           <a href="/image" style="background-color:#6d1140;border:0px" class="btn btn-primary w-100 mt-3">Edit Image</a>
+                                          <a href="/aboutme" style="background-color:#6d1140;border:0px" class="btn btn-primary w-100 mt-3">Edit Profile</a>
                                     </div>
                               </div>
 
@@ -129,7 +129,6 @@
                                 <div class="detailssection">
 
                                         <h3 class="sectiontitle"><img src="assets/images/basic.png" class="img-fluid" style="width:25px"><span>Basic Details</span></h3>
-                                        <button class="btn btn-primary btn-sm float-right">Edit</button>
 
 
                                     <div class="container">

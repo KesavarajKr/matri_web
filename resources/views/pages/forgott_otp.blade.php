@@ -31,7 +31,7 @@
                                 <p class="text-center text-danger" id="expired">OTP Time Expired</p>
 
                                 <div class="row mt-3">
-                                    <button type="submit" class="btn btn-default btnstyle otpbtn" style="margin:15px auto;display:block;width:250px;background-image: linear-gradient(to right, #98803b 0%, #98803b 41%, #b69972 100%);">Verify and Create Account</button>
+                                    <button type="submit" class="btn btn-default btnstyle otpbtn" style="margin:15px auto;display:block;width:250px;background-image: linear-gradient(to right, #98803b 0%, #98803b 41%, #b69972 100%);">Verify OTP</button>
                                 </div>
                             </form>
                             </div>

@@ -17,7 +17,59 @@ class favouriteController extends Controller
     {
         //
 
+        $id = session('LoggedUser');
 
+        $reg  = DB::table('registers')->where('varan_id', $id)->first();
+
+
+        // GetGender
+      $varanid=$reg->varan_id;
+      $gender=$reg->Gender;
+      $privacystatus=$reg->member_shiptype;
+      if($privacystatus=="0"){
+          $privacystatus="Regular";
+      }else{
+         $privacystatus="Premium";
+
+      }
+
+  $query=DB::table('registers')
+  ->select('registers.Name', 'registers.age', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+
+                          WHEN favourites.liked_varan_id = registers.varan_id THEN 1
+
+                          ELSE 0
+
+                          END) AS fav'), DB::raw('(CASE
+
+                          WHEN images.privacy_type = "All" THEN 0
+
+                          WHEN images.privacy_type = "'.$privacystatus.'" THEN 0
+
+                          ELSE null
+
+                          END) AS imageview'))
+  ->leftJoin('subcastes','registers.sub_caste','=','subcastes.id')
+  ->leftJoin('jobdescription_tb','registers.job_category','=','jobdescription_tb.id')
+  ->leftJoin('favourites','registers.varan_id','=','favourites.liked_varan_id')
+  ->leftJoin('images',function($query) {
+      $query->on('registers.varan_id','=','images.varanid')
+      ->where('images.approve_status','<>','0')
+      ->where('images.image_status','=','Main');
+  })
+  ->Join('favourites',function($query) use ($id){
+      $query->on('registers.varan_id','=','favourites.liked_varan_id')
+      ->where('favourites.user_varan_id','=',$id)
+      ->where('favourites.status','=','Liked')
+      ->orderBy('favourites.id', 'DESC');
+  });
+
+
+  $favourite = $query->get();
+
+
+
+        return view('pages.favourite',compact('favourite'));
     }
 
     /**

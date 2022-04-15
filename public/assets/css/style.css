@@ -709,6 +709,14 @@ cursor: pointer;
     padding:20px;
     border-radius:20px;
 }
+.matchimg img
+{
+    width:240px;
+    height:240px;
+    margin:0 auto;
+    display:block;
+    border-radius:10px;
+}
 .matchesbtn img
 {
     margin-left:20px;
@@ -802,4 +810,118 @@ cursor: pointer;
     padding:10px;
     margin-top:25px;
     border-radius:15px;
+}
+.price-description
+{
+    color:#fff;
+
+}
+.price-box
+{
+background-color: #fff;
+padding:20px;
+text-align: center;
+width:270px;
+margin:0 auto;
+display:block;
+border-radius:10px;
+margin-top:-70px;
+}
+.price-description ul
+{
+    list-style-type: none;
+    margin-top:30px;
+}
+.price-description ul li
+{
+    margin:15px 0px;
+    font-size:18px;
+}
+.price-description ul li i
+{
+    margin-right:20px;
+    font-size:25px;
+}
+.price-title
+{
+    color:#6d1140;
+    font-weight:bold;
+}
+.price
+{
+    color:#6d1140;
+    font-weight:bold;
+    font-size:20px;
+    margin-top:15px;
+}
+.bi-check-circle-fill
+{
+    color:#D7BB71;
+}
+.bi-x-circle-fill
+{
+    color:#E27B21;
+}
+.whychoose
+{
+    background-image: linear-gradient(to right, #CA4472 0%, #CA4472 41%, #6D1140 100%) !important;
+    padding:35px 0px;
+}
+.storydetails
+{
+    background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;
+    padding:40px 0px;
+}
+.storydetails h1
+{
+    font-weight:bold;
+    color:#fff;
+}
+.faqsection
+{
+    padding:35px 0px;
+}
+.testimonialsection
+{
+    background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;
+    padding:40px 0px;
+}
+.sponserdetails
+{
+    background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;
+    padding:40px 0px;
+}
+.sponserdetails h1
+{
+    color:#fff;
+    font-weight:bold;
+}
+.sponsercontainer
+{
+    background-color:#fff;
+    height:200px;
+    border-radius:20px;
+}
+.sponsercontainer img
+{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+/* .sponsercontainer img
+{
+    background-color:#fff;
+    height:200px;
+    border-radius:20px;
+} */
+.paymentsuccess
+{
+    background-color:#fff;
+    padding:25px;
+    width:400px;
+    margin:0 auto;
+    display:block;
+    border-radius:25px;
+
 }

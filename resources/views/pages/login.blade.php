@@ -40,7 +40,7 @@
                                 </div>
                             </form>
                                 <div class="text-center">
-                                    <a href="" style="color:#fff;text-decoration:none">Forgott Password</a><br>
+                                    <a href="/forgott" style="color:#fff;text-decoration:none">Forgott Password</a><br>
                             <a href="/" style="color:#fff;text-decoration:none">Create New User</a>
                                 </div>
                             </div>

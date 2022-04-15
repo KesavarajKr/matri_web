@@ -339,4 +339,84 @@ if($hfrom!="" && $hto!=""){
         return view('pages.searchResult',compact('filter','maritalstatus','religions','caste','subcaste','country','states','cities','height'));
 
     }
+
+    public function searchvaranid(Request $request)
+    {
+        $varanid = $request->varanid;
+
+        $filter = DB::table('registers')
+
+        ->select('registers.Name','registers.id', 'registers.age','registers.varan_id','registers.dob','registers.Gender','regli_tb.religion_name','registers.email_id','registers.mobile_no','registers.varan_id', 'registers.no_of_children','registers.no_of_children','registers.whatsapp_no','registers.com_address','registers.municipality_panchayat','registers.other_countryaddress','registers.residential_address','subcastes.subcategory_name','subcastes.Category_name','registers.eduction_detail','registers.job_detail','jobdescription_tb.name', 'castes.Caste_name','matrial_tb.matrial_name','countries.country_name','states.state_name','cities.city_name','eductiondetails_tb.name as eduname','registers.annual_income','registers.father_name','registers.father_occuption','registers.mother_name','registers.mother_occuption','registers.total_sibblings','registers.elder_sister','registers.younger_sister','registers.elder_brother','registers.younger_brother','registers.about_myself','registers.laknam','registers.dosam','registers.birth_time','registers.blood_group',DB::raw('(CASE
+
+        WHEN favourites.liked_varan_id = registers.varan_id THEN 1
+
+        ELSE 0
+
+        END) AS fav'), DB::raw('(CASE
+
+        WHEN images.privacy_type = "All" THEN 0
+
+
+        ELSE null
+
+        END) AS imageview'))
+
+
+        ->where('varan_id','=',$varanid)
+
+
+        ->leftJoin('subcastes','registers.sub_caste','=','subcastes.id')
+        ->leftJoin('matrial_tb','registers.marital_status','=','matrial_tb.id')
+        ->leftJoin('regli_tb','registers.Religion','=','regli_tb.id')
+        ->leftJoin('castes','registers.Caste','=','castes.id')
+        ->leftJoin('countries','registers.country','=','countries.country_id')
+        ->leftJoin('states','registers.state','=','states.state_id')
+        ->leftJoin('cities','registers.district','=','cities.city_id')
+        ->leftJoin('jobdescription_tb','registers.job_category','=','jobdescription_tb.id')
+        ->leftJoin('eductiondetails_tb','registers.eduction','=','eductiondetails_tb.id')
+        ->leftJoin('favourites','registers.varan_id','=','favourites.liked_varan_id')
+        ->leftJoin('images',function($query) {
+            $query->on('registers.varan_id','=','images.varanid')
+            ->where('images.approve_status','<>','0')
+            ->where('images.image_status','=','Main');
+        })
+
+        ->get();
+
+        $maritalstatus = DB::table('matrial_tb')
+        ->select('*')
+        ->get();
+
+        $religions = DB::table('regli_tb')
+        ->select('*')
+        ->get();
+
+        $caste = DB::table('castes')
+        ->select('*')
+        ->get();
+
+        $subcaste = DB::table('subcastes')
+        ->select('*')
+        ->get();
+
+        $country = DB::table('countries')
+        ->select('*')
+        ->get();
+
+        $states = DB::table('states')
+        ->select('*')
+        ->get();
+
+        $cities = DB::table('cities')
+        ->select('*')
+        ->get();
+
+        $height = DB::table('height_tb')
+        ->select('*')
+        ->get();
+        // dd($filter);
+
+            return view('pages.searchResult',compact('filter','maritalstatus','religions','caste','subcaste','country','states','cities','height'));
+
+    }
 }

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="../assets/css/style.css" rel="stylesheet">
@@ -54,7 +54,7 @@
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
-    s1.src='https://embed.tawk.to/624bc7832abe5b455fc4c373/1fvs06nbv';
+    s1.src='https://embed.tawk.to/6256dff27b967b11798a9233/1g0hlljmk';
     s1.charset='UTF-8';
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
@@ -135,3 +135,10 @@
   });
 });
 </script>
+
+<script>
+    document.addEventListener("contextmenu", function (e){
+    e.preventDefault();
+}, false);
+</script>
+

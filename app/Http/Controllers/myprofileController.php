@@ -37,6 +37,8 @@ class myprofileController extends Controller
         ->leftJoin('job_country','registers.job_country','=','job_country.country_id')
         ->leftJoin('job_state','registers.job_state','=','job_state.state_id')
         ->leftJoin('job_city','registers.job_city','=','job_city.job_city_id')
+
+
         ->where('registers.varan_id', '=', $varanid)->first();
 
         $partners=DB::table('partners')
@@ -62,7 +64,13 @@ class myprofileController extends Controller
         // ->leftJoin('job_city','partners.job_city','=','job_city.job_city_id')
         ->where('partners.varan_id', '=', $varanid)->first();
 
-        return view('pages.myprofile',compact('viewid','partners'));
+        $images = DB::table('images')
+        ->select('*')
+        ->where('varanid','=',$varanid)
+        ->where('approve_status','=','1')
+        ->first();
+
+        return view('pages.myprofile',compact('viewid','partners','images'));
     }
 
     /**

@@ -25,7 +25,7 @@
                                 <form method="POST" action="/updatepassword">
                                     @csrf
 
-                                    <h5>Your Mobile Number {{$mobilenum}}</h5>
+                                    <h5 class="text-white">Your Mobile Number {{$mobilenum}}</h5>
                                     <input type="hidden" name="mblnum" value="{{$mobilenum}}">
                                     <div class="form-group mt-3">
                                         <label style="color:#fff">Password</label>
@@ -33,7 +33,7 @@
                                     </div>
 
                                 <div class="row mt-3">
-                                    <button type="submit" class="btn btn-default btnstyle " style="margin:15px auto;display:block;width:250px;background-image: linear-gradient(to right, #98803b 0%, #98803b 41%, #b69972 100%);">Send OTP</button>
+                                    <button type="submit" class="btn btn-default btnstyle " style="margin:15px auto;display:block;width:250px;background-image: linear-gradient(to right, #98803b 0%, #98803b 41%, #b69972 100%);">Change Password</button>
 
                                 </div>
                             </form>

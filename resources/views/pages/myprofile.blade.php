@@ -15,27 +15,27 @@
                                         <div class="profile-image-box">
                                             <img src="/images/{{$images->image_name}}" class="img-fluid">
                                         </div>
+                                        @else
+                                            <div class="profile-image-box">
+                                                <img src="/images/1650089376.png" class="img-fluid">
+                                            </div>
                                         @endif
 
-                                        {{-- <div class="owl-carousel mt-4">
+                                        <div class="owl-carousel mt-4">
+                                            @if($allimages)
+                                                @foreach ($allimages as $profileimg)
+                                                <div>
+                                                    <div class="profile-img-thumb">
+                                                        <img src="/images/{{$profileimg->image_name}}" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                                @endforeach
 
-                                            <div>
-                                                <div class="profile-img-thumb">
-                                                    <img src="images/1649049933.png" class="img-fluid">
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="profile-img-thumb">
-                                                    <img src="images/1649049933.png" class="img-fluid">
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="profile-img-thumb">
-                                                    <img src="images/1649049933.png" class="img-fluid">
-                                                </div>
-                                            </div>
+                                            @endif
 
-                                          </div> --}}
+
+
+                                          </div>
                                           <a href="/image" style="background-color:#6d1140;border:0px" class="btn btn-primary w-100 mt-3">Edit Image</a>
                                           <a href="/aboutme" style="background-color:#6d1140;border:0px" class="btn btn-primary w-100 mt-3">Edit Profile</a>
                                     </div>
@@ -639,8 +639,6 @@
                                                                 {{$viewid->birth_time}}
                                                             @endif</td>
                                                         </tr>
-
-
 
 
                                                     </tbody>

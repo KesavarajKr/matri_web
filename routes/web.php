@@ -6,10 +6,12 @@ use App\Http\Controllers\bioController;
 use App\Http\Controllers\cashfreeController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\favouriteController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\HoroscopeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\MatchesController;
 use App\Http\Controllers\myprofileController;
 use App\Http\Controllers\PackageController;
@@ -21,7 +23,9 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\religionController;
 use App\Http\Controllers\searchController;
 use App\Http\Controllers\settingsController;
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VideoController;
+use Symfony\Component\Mime\Header\MailboxHeader;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +95,8 @@ Route::resource('location',LocationController::class)->middleware('shareAuth');
 
 Route::resource('professional',ProfessionalController::class)->middleware('shareAuth');
 
+Route::resource('video',VideoController::class)->middleware('shareAuth');
+
 Route::resource('preference',PreferenceController::class)->middleware('shareAuth');
 
 Route::resource('image',ImageController::class)->middleware('shareAuth');
@@ -107,9 +113,15 @@ Route::resource('search',searchController::class)->middleware('shareAuth');
 
 Route::resource('settings',settingsController::class)->middleware('shareAuth');
 
+Route::resource('vendor',VendorController::class)->middleware('shareAuth');
+
 Route::resource('favourite',favouriteController::class)->middleware('shareAuth');
 
 Route::resource('package',PackageController::class)->middleware('shareAuth');
+
+Route::resource('mailbox',MailboxController::class)->middleware('shareAuth');
+
+Route::resource('home',HomepageController::class)->middleware('shareAuth');
 
 Route::get('premiummatches',[MatchesController::class,'premiumMatches'])->middleware('shareAuth');
 
@@ -154,6 +166,19 @@ Route::resource('redirect_url',cashfreeController::class)->middleware('shareAuth
 
 
 Route::post('redirectpage',[cashfreeController::class,'redirectpage'])->middleware('shareAuth');
+
+
+Route::get('receivedinterest',[MailboxController::class,'receivedinterest'])->middleware('shareAuth');
+Route::post('acceptinterest',[MailboxController::class,'acceptinterest'])->middleware('shareAuth');
+Route::post('rejectinterest',[MailboxController::class,'rejectinterest'])->middleware('shareAuth');
+
+Route::get('sendinterest',[MailboxController::class,'sendinterest'])->middleware('shareAuth');
+Route::post('cancelinterest',[MailboxController::class,'cancelinterest'])->middleware('shareAuth');
+
+Route::post('hideprofile',[settingsController::class,'hideprofile'])->middleware('shareAuth');
+
+Route::post('deleteprofile',[settingsController::class,'deleteprofile'])->middleware('shareAuth');
+
 
 
 

@@ -37,9 +37,16 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-4 ">
+                                                @if($profiles->imageview == '0')
                                                 <div class="matchimg">
-                                                <img src="assets/images/Group_3.png" class="img-fluid">
-                                                </div>
+                                                    <img src="../images/{{$profiles->image_name}}" class="img-fluid">
+                                                    </div>
+                                                    @else
+                                                    <div class="matchimg">
+                                                        <img src="../assets/images/imagelocked.png" class="img-fluid">
+                                                        </div>
+                                                @endif
+
                                             </div>
                                             <div class="col-lg-8">
                                                 <h3 class="profile-name">{{$profiles->Name}}<sub>{{$profiles->varan_id}}</sub></h3>

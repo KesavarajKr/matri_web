@@ -34,7 +34,7 @@ class favouriteController extends Controller
       }
 
   $query=DB::table('registers')
-  ->select('registers.Name', 'registers.age', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+  ->select('registers.Name','registers.id', 'registers.age','regli_tb.religion_name', 'eductiondetails_tb.name as eduname','registers.varan_id', 'states.state_name','subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                           WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -51,7 +51,9 @@ class favouriteController extends Controller
                           END) AS imageview'))
   ->leftJoin('subcastes','registers.sub_caste','=','subcastes.id')
   ->leftJoin('jobdescription_tb','registers.job_category','=','jobdescription_tb.id')
-  ->leftJoin('favourites','registers.varan_id','=','favourites.liked_varan_id')
+  ->leftJoin('states','registers.state','=','states.state_id')
+  ->leftJoin('eductiondetails_tb','registers.eduction','=','eductiondetails_tb.id')
+  ->leftJoin('regli_tb','registers.Religion','=','regli_tb.id')
   ->leftJoin('images',function($query) {
       $query->on('registers.varan_id','=','images.varanid')
       ->where('images.approve_status','<>','0')

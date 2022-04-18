@@ -35,9 +35,9 @@
                                                         @endforeach
                                                     @endif
                                                 @else
-                                                {{-- <div class="profile-img-thumb">
+                                                <div class="profile-img-thumb">
                                                     <img src="../assets/images/imagelocked.png" class="img-fluid m-auto d-block">
-                                                </div> --}}
+                                                </div>
                                             @endif
 
 
@@ -47,6 +47,38 @@
                                           {{-- <a href="/image" style="background-color:#6d1140;border:0px" class="btn btn-primary w-100 mt-3">Edit Image</a> --}}
                                     </div>
                               </div>
+                              @if($horocount != '0')
+                              <div class="card profilebox mt-2 matchesdetails" >
+                                <div class="card-body">
+                                    <h5 style="color:#6d1140"><b>Horoscope Matches</b></h5>
+                                    <div class="matchbox">
+
+                                        @if($horocount)
+                                            <h3 class="text-center">{{$horocount->no_macths}}/12</h3>
+                                            @else
+                                            <h3 class="text-center">0/12</h3>
+                                        @endif
+
+                                    </div>
+                                    @if($horocount->Status == 'Ok')
+                                        <h6 class="text-success"><b><i class="bi bi-hand-thumbs-up-fill"></i>&nbsp;&nbsp;Matched</b></h6>
+                                        @else
+                                        <h6 class="text-danger"><b><i class="bi bi-hand-thumbs-up-fill"></i>&nbsp;&nbsp;Not Matched</b></h6>
+                                    @endif
+                                </div>
+                          </div>
+                            @else
+
+                              @endif
+
+                              <div class="card profilebox mt-2 matchesdetails" >
+                                <div class="card-body">
+                                    <h5 style="color:#6d1140"><b>Profile Matches</b></h5>
+                                    <div class="matchbox">
+                                        <h3 class="text-center">{{$int}}/100</h3>
+                                    </div>
+                                </div>
+                          </div>
                               {{-- @dd($viewid); --}}
                         </div>
                         <div class="col-lg-9">

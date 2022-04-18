@@ -26,7 +26,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $youtube=DB::table('youtubes')->get();
+        View::share('youtube',$youtube);
 
+        $vendors = DB::table('vendors')
+        ->select('*')
+        ->where('Vendor_Type','!=','Broker')
+        ->where('Approval_Status','=','Approved')
+        ->get();
+        View::share('vendorimage',$vendors);
+
+        $testimonials=DB::table('testimonials')->get();
+        View::share('testimonials',$testimonials);
 
     }
 }

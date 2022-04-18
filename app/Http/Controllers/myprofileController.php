@@ -68,9 +68,16 @@ class myprofileController extends Controller
         ->select('*')
         ->where('varanid','=',$varanid)
         ->where('approve_status','=','1')
+        ->where('image_status','=','Main')
         ->first();
 
-        return view('pages.myprofile',compact('viewid','partners','images'));
+        $allimages = DB::table('images')
+        ->select('*')
+        ->where('varanid','=',$varanid)
+        ->where('approve_status','=','1')
+        ->get();
+
+        return view('pages.myprofile',compact('viewid','partners','images','allimages'));
     }
 
     /**

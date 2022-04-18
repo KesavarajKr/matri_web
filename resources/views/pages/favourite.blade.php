@@ -10,17 +10,22 @@
 
 
                         <div class="col-lg-10 offset-lg-1">
-
                             @if($favourite)
-                                @foreach ($filter as $profiles)
-
+                                @foreach ($favourite as $profiles)
                                 <div class="matches-container">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-4 ">
+                                                @if($profiles->imageview == '0')
                                                 <div class="matchimg">
-                                                <img src="assets/images/Group_3.png" class="img-fluid">
-                                                </div>
+                                                    <img src="../images/{{$profiles->image_name}}" class="img-fluid">
+                                                    </div>
+                                                    @else
+                                                    <div class="matchimg">
+                                                        <img src="../assets/images/imagelocked.png" class="img-fluid">
+                                                        </div>
+                                                @endif
+
                                             </div>
                                             <div class="col-lg-8">
                                                 <h3 class="profile-name">{{$profiles->Name}}<sub>{{$profiles->varan_id}}</sub></h3>
@@ -71,29 +76,25 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
 
-
                                                     @if($profiles->fav == 0)
 
-                                                        <form method="POST" action="/addFavourite">
-                                                            @csrf
-                                                            <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
-                                                            <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
-                                                            <input type="hidden" name="status" value="liked">
-                                                            <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
-                                                        </form>
-                                                        @else
+                                                    <form method="POST" action="/addFavourite">
+                                                        @csrf
+                                                        <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                                                        <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
+                                                        <input type="hidden" name="status" value="liked">
+                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
+                                                    </form>
+                                                    @else
 
-                                                        <form method="POST" action="/addFavourite">
-                                                            @csrf
-                                                            <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
-                                                            <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
-                                                            <input type="hidden" name="status" value="liked">
-                                                            <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
-                                                        </form>
-                                                    @endif
-
-
-
+                                                    <form method="POST" action="/addFavourite">
+                                                        @csrf
+                                                        <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                                                        <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
+                                                        <input type="hidden" name="status" value="liked">
+                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
+                                                    </form>
+                                                @endif
 
                                                 </div>
                                                 <div class="col-lg-4">

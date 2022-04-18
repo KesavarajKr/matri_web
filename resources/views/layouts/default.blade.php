@@ -142,3 +142,24 @@
 }, false);
 </script>
 
+<script>
+    $(".Password").hide();
+    $(".vendorlogo").hide();
+
+    $(".vendortype").change(function(){
+        vendortype = $(this).val();
+
+        if(vendortype == 'Broker')
+        {
+            $(".Password").show();
+            $(".vendorlogo").hide();
+
+        }
+        else
+        {
+            $(".Password").hide();
+            $(".vendorlogo").show();
+        }
+
+    });
+</script>

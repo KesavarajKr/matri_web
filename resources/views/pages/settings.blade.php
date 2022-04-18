@@ -35,8 +35,8 @@
                         <div class="col-lg-6 ">
                             <div class="accountsetting">
                                 <h5 class="text-center text-white mb-4">Account Settings</h5>
-                                <button class="btn btn-default accountbtn"><img src="assets/images/hidemyprofile.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Hide My Profile</button><br>
-                                <button class="btn btn-default accountbtn"><img src="assets/images/deletemyaccount.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Delete My Account</button><br>
+                                <button data-bs-toggle="modal" data-bs-target="#hideprofile" class="btn btn-default accountbtn"><img src="assets/images/hidemyprofile.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Hide My Profile ({{$register->account_setting}})</button><br>
+                                <button data-bs-toggle="modal" data-bs-target="#deleteprofile" class="btn btn-default accountbtn"><img src="assets/images/deletemyaccount.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Delete My Account ({{$register->delete_setting}})</button><br>
                                 <a href="/forgott" class="btn btn-default accountbtn"><img src="assets/images/changepassword.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Change My Password</a><br>
                                 <a href="/logout" class="btn btn-default accountbtn"><img src="assets/images/logout.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Logout</a>
                             </div>
@@ -45,8 +45,24 @@
                             <div class="accountsetting">
                                 <h5 class="text-center text-white mb-4">Privacy Settings</h5>
 
-                                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-default accountbtn"><img src="assets/images/picturesetting.png"  class="img-fluid">&nbsp;&nbsp;&nbsp;Photo Privacy ({{$images->privacy_type}})</button><br>
-                                <button data-bs-toggle="modal" data-bs-target="#horoscopesetting" class="btn btn-default accountbtn"><img src="assets/images/horoscopesetting.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Horoscope Privacy ({{$horoscope->privacy_setting}})</button><br>
+                                <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-default accountbtn"><img src="assets/images/picturesetting.png"  class="img-fluid">&nbsp;&nbsp;&nbsp;Photo Privacy (
+                                    @if($images)
+                                        {{$images->privacy_type}}
+                                        @else
+                                        None
+                                    @endif
+
+                                    )</button><br>
+
+                                <button data-bs-toggle="modal" data-bs-target="#horoscopesetting" class="btn btn-default accountbtn"><img src="assets/images/horoscopesetting.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Horoscope Privacy (
+                                    @if($horoscope)
+                                    {{$horoscope->privacy_setting}}
+                                    @endif
+
+
+                                    )</button><br>
+
+
 
                                 <button data-bs-toggle="modal" data-bs-target="#contactprivacy" class="btn btn-default accountbtn"><img src="assets/images/contactprivacy.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Contact Privacy&nbsp;&nbsp;&nbsp;({{$register->cprivacy_setting}}) </button><br>
                                 <button data-bs-toggle="modal" data-bs-target="#bioprivacy" class="btn btn-default accountbtn"><img src="assets/images/biography.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Biography Privacy&nbsp;&nbsp;&nbsp;({{$register->bprivacy_setting}})</button>
@@ -185,6 +201,56 @@
             <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
             <button type="submit" class="btn btn-danger" style="width:200px;background-color:#6d1140;border:0px">Hide</button>
           </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="hideprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Profile Hide</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body m-auto d-block">
+            <form method="POST" action="/hideprofile">
+                @csrf
+                <input type="hidden" class="form-control" name="status" value="Hide">
+                <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                <button type="submit" class="btn btn-primary" style="text-align:center;width:200px;background-color:#6d1140;border:0px">Hide</button>
+              </form>
+          <form method="POST" action="/hideprofile">
+            @csrf
+            <input type="hidden" class="form-control" name="status" value="View">
+            <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+            <button type="submit" class="btn btn-primary" style="width:200px;background-color:#6d1140;border:0px">Show</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteprofile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body m-auto d-block">
+            <form method="POST" action="/deleteprofile">
+                @csrf
+                <input type="hidden" class="form-control" name="status" value="Pending">
+                <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                <textarea style="height: 250px" class="form-control" name="deletereason" required placeholder="Delete Reason"></textarea>
+                <button type="submit" class="btn btn-primary mt-3" style="text-align:center;width:200px;background-color:#6d1140;border:0px">Send Request</button>
+              </form>
+
+
         </div>
 
       </div>

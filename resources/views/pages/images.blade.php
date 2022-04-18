@@ -65,15 +65,19 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <h6 class="text-center mt-4" style="font-weight:bold">My Photos <span>{{$imgcount->count()}}</span></h6>
+                                        <h6 style="text-align:center"><button data-bs-toggle="modal" data-bs-target="#imageview" class="btn btn-default btn-sm" style="background-color:#6d1140;color:#fff"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp; View Images</button></h6>
                                         <div class="imagecontainer" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
                                             <div class="iconbox">
                                                 <i class="bi bi-plus-circle"></i>
+                                                {{-- <i class="bi bi-eye-fill"></i> --}}
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="text-center mt-4" style="font-weight:bold">My Videos <span>{{$videocount->count()}}</span></h6>
+                                        <h6 style="text-align:center"><button data-bs-toggle="modal" data-bs-target="#videoview" class="btn btn-default btn-sm" style="background-color:#6d1140;color:#fff"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp; View Videos</button></h6>
                                         <div class="imagecontainer" data-bs-toggle="modal" data-bs-target="#exampleModal1">
 
                                             <div class="iconbox">
@@ -83,6 +87,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="text-center mt-4" style="font-weight:bold">ID Proof & Religion Spec <span>{{$horoscopecount->count()}}</span></h6>
+                                        <h6 style="text-align:center"><button data-bs-toggle="modal" data-bs-target="#horoscopeview" class="btn btn-default btn-sm" style="background-color:#6d1140;color:#fff"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp; View Details</button></h6>
                                         <div class="imagecontainer" data-bs-toggle="modal" data-bs-target="#exampleModal2">
 
                                             <div class="iconbox">
@@ -100,6 +105,163 @@
 </div>
 </section>
 @endsection
+
+<div class="modal fade" id="horoscopeview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">View Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Image Name</th>
+                                        <th>File Type</th>
+                                        <th>View</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($allhoroscope)
+                                        @foreach ($allhoroscope as $horoscope)
+                                            <tr>
+                                                <td><img class="img-fluid" src="/images/{{$horoscope->img_name}}" style="width:70px"></td>
+                                                <td>{{$horoscope->title}}</td>
+                                                <td><a href="/images/{{$horoscope->img_name}}" target="_blank">{{$horoscope->title}}</a></td>
+                                                <td>
+                                                    <form method="POST" action="{{route('horoscope.destroy',$horoscope->id)}}" onsubmit="return confirm('Do You want Delete this Data?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger button"><i class="bi bi-trash-fill"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="imageview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">View Images</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        @if($allimages)
+                            @foreach ($allimages as $images)
+                                <div class="col-lg-6">
+                                    <div class="viewimg" style="position:relative;height:200px;border:1px solid #6d1140;border-radius:10px;margin:10px;">
+                                        <img src="/images/{{$images->image_name}}" class="img-fluid m-auto d-block">
+                                        <div class="delbtn">
+                                            <form method="POST" action="{{route('image.destroy',$images->id)}}" onsubmit="return confirm('Do You want Delete this Data?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger button"><i class="bi bi-trash-fill"></i></button>
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                        @endif
+
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="videoview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">View Images</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        @if($allvideos)
+                            @foreach ($allvideos as $video)
+                                <div class="col-lg-12">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th>Video Name</th>
+                                                <th>Play</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+<tr>
+    <td>{{$video->video_name}}</td>
+    <td><a href="/images/{{$video->video_name}}" target="_blank">{{$video->video_name}}</a></td>
+    <td> <form method="POST" action="{{route('video.destroy',$video->id)}}" onsubmit="return confirm('Do You want Delete this Data?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger button"><i class="bi bi-trash-fill"></i></button>
+    </form></td>
+</tr>
+                                        </tbody>
+                                    </table>
+                                    {{-- <div class="viewimg" style="position:relative;height:200px;border:1px solid #6d1140;border-radius:10px;margin:10px;">
+                                        <a href="/images/{{$video->video_name}}" target="_blank">{{$video->video_name}}</a>
+                                        <div class="delbtn">
+
+
+
+                                        </div>
+                                    </div> --}}
+
+                                </div>
+                            @endforeach
+                        @endif
+
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

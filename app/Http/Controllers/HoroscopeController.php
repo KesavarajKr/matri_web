@@ -216,7 +216,11 @@ class HoroscopeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('horoscopes')
+        ->where('id', $id)
+        ->delete();
+
+        return redirect('/image')->with('success','Horoscope Deleted Successfully');
     }
 
     public function updatehoroscopedetails(Request $request)

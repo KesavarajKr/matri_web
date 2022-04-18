@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-use App\Models\Video;
-
-class VideoController extends Controller
+class HomepageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,10 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        // $youtube = DB::table('youtubes')
+        // ->select('*')
+        // ->get();
+        return view('pages.home');
     }
 
     /**
@@ -81,8 +83,6 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        $caste = Video::find($id);
-        $caste -> delete();
-        return redirect('/image')->with('success','Video Deleted Successfully');
+        //
     }
 }

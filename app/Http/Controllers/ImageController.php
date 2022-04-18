@@ -159,9 +159,22 @@ class ImageController extends Controller
         //   $count=51;
            $count1 =round($count * 1.82);
         //    $count1=$count/100;
+            $allimages = DB::table('images')
+            ->select('*')
+            ->where('varanid','=',$varanid)
+            ->get();
 
+            $allvideos = DB::table('videos')
+            ->select('*')
+            ->where('varan_id','=',$varanid)
+            ->get();
 
-        return view('pages.images',compact('imgcount','videocount','horoscopecount','count1'));
+            $allhoroscope = DB::table('horoscopes')
+            ->select('*')
+            ->where('varan_id','=',$varanid)
+            ->get();
+
+        return view('pages.images',compact('imgcount','videocount','horoscopecount','count1','allimages','allvideos','allhoroscope'));
     }
 
     /**
@@ -227,7 +240,21 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $varanid = session('LoggedUser');
+        $delete=DB::table('images')->where('id', $id)->delete();
+        if($delete){
+
+             $updatedata= DB::table('images')->where('varanid',$varanid)
+             ->limit(1)
+                  ->update(array(
+                      'image_status'=>"Main",
+                  ));
+
+                if($updatedata)
+                {
+                    return redirect('/image')->with('success','Image Deleted');
+                }
+        }
     }
 
     public function uploadimage(Request $request)
@@ -245,12 +272,28 @@ class ImageController extends Controller
                 $filename = time().'.'.$extension;
                 $file->move('images/',$filename);
 
-                $uploadimage = DB::table('images')->insert(
-                    array(
-                        'image_name'     =>   $filename,
-                        'varanid'   =>   $varanid,
-                    )
-                );
+                $imagecount = DB::table('images')
+                ->select('image_name')
+                ->where('varanid', '=', $varanid)
+                ->get()->count();
+                if($imagecount==0){
+                    $uploadimage = DB::table('images')->insert(
+                        array(
+                            'image_name'     =>   $filename,
+                            'varanid'   =>   $varanid,
+                            'image_status'   =>   'Main',
+                        )
+                        );
+                }
+                else
+                {
+                    $uploadimage = DB::table('images')->insert(
+                        array(
+                            'image_name'     =>   $filename,
+                            'varanid'   =>   $varanid,
+                        )
+                        );
+                }
 
                 if($uploadimage)
                 {
@@ -346,6 +389,30 @@ class ImageController extends Controller
             // return redirect('/image')->with('success','Image Uploaded Failed');
         }
 
+
+    }
+
+   public function deleteimage($id=null,$id1=null){
+
+
+
+        $delete=DB::table('images')->where('id', $id)->delete();
+        if($delete){
+
+             $updatedata= DB::table('images')->where('varanid',$id1)
+             ->limit(1)
+                  ->update(array(
+                      'image_status'=>"Main",
+                  ));
+
+
+
+
+            return response()->json([
+            'status' => '200',
+            'message' => 'Deleted Successfully',
+        ]);
+        }
 
     }
 

@@ -27,6 +27,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/search"><i style="color:#fff" class="bi bi-search"></i>&nbsp;&nbsp;Search</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/vendor"><i style="color:#fff" class="bi bi-people-fill"></i>&nbsp;&nbsp;Join Vendor</a>
+          </li>
           <div class="d-flex">
               @if(session('LoggedUser') == "")
                 <a class="loginbtn" href="/login"><b>Login</b></a>
@@ -63,10 +66,10 @@
       <div class="bottom-content">
             <ul class="sidebar-list">
                 <li><a href="/myprofile"><i class="bi bi-person-circle"></i>My Profile</a></li>
-                <li><a href=""><i class="bi bi-person-heart"></i>Favourite People</a></li>
-                <li><a href=""><i class="bi bi-person-heart"></i>Upgrade Premium</a></li>
-
-                <li><a href=""><i class="bi bi-sliders"></i>Settings</a></li>
+                <li><a href="/favourite"><i class="bi bi-person-heart"></i>Favourite People</a></li>
+                <li><a href="/package"><i class="bi bi-person-heart"></i>Upgrade Premium</a></li>
+                <li><a href="/mailbox"><i class="bi bi-person-heart"></i>Mail Box</a></li>
+                <li><a href="/settings"><i class="bi bi-sliders"></i>Settings</a></li>
 
                 <li><a href="/logout"><i class="bi bi-power"></i>Logout</a></li>
             </ul>
@@ -80,11 +83,11 @@
 </a>
 <div class="social">
     <ul>
-      <li class="twitter"><a href="">Twitter<i class="bi bi-twitter" aria-hidden="true"></i></a></li>
-      <li class="facebook"><a href="">Facebook<i class="bi bi-facebook" aria-hidden="true"></i></a></li>
+      <li class="twitter"><a href="https://twitter.com/CommunityVaran" target="_blank">Twitter<i class="bi bi-twitter" aria-hidden="true"></i></a></li>
+      <li class="facebook"><a href="https://www.facebook.com/Varan2varan-114581607889688" target="_blank">Facebook<i class="bi bi-facebook" aria-hidden="true"></i></a></li>
       {{-- <li class="google-plus"><a href="https://codepen.io/collection/XdWJOQ/">Google plus<i class="fa fa-google-plus" aria-hidden="true"></i></a></li> --}}
-      <li class="instagram"><a href="">Instagram<i class="bi bi-instagram" aria-hidden="true"></i></a></li>
-      <li class="instagram"><a href="">Youtube<i class="bi bi-youtube" aria-hidden="true"></i></a></li>
-      <li class="instagram"><a href="tel:+91-8940322022">Support<i class="bi bi-headset" aria-hidden="true"></i></a></li>
+      <li class="instagram"><a href="https://www.instagram.com/communityvaran/" target="_blank">Instagram<i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+      <li class="instagram"><a href="https://www.youtube.com/channel/UCTmT3G0F7ohN6lqcpnSEC5Q" target="_blank">Youtube<i class="bi bi-youtube" aria-hidden="true"></i></a></li>
+      <li class="instagram"><a href="tel:+91-8940322022" >Support<i class="bi bi-headset" aria-hidden="true"></i></a></li>
     </ul>
 </div>

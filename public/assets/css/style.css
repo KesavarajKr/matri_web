@@ -394,11 +394,12 @@ body
 .sidebar-list
 {
     padding-left:0px;
+
 }
 .sidebar-list li
 {
     list-style: none;
-    padding:25px 25px;
+    padding:15px 25px;
     border-bottom:1px solid #ccc;
 }
 .sidebar-list li .bi
@@ -924,4 +925,55 @@ margin-top:-70px;
     display:block;
     border-radius:25px;
 
+}
+
+.matchesdetails
+{
+    border:1px solid #6d1140;
+}
+.matchbox
+{
+    width:200px;
+    height:50px;
+    background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;
+    /* background-color:#6d1140; */
+    border-radius:10px;
+    margin:15px auto;
+    display:block;
+    position: relative;
+}
+.matchbox h3
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color:#fff;
+}
+
+.delbtn
+{
+    position:absolute;
+    top:5%;
+    right:5%;
+    color:red;
+    font-size:15px;
+}
+
+.interestbox h3
+{
+    text-align:center;
+    font-size:65px;
+    color:#fff;
+}
+
+.nav-pills .nav-link
+{
+    background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;
+    width:300px !important;
+    margin:0 auto;
+    display:block;
+    padding:15px 0px;
+    font-weight:bold;
+    color:#fff !important
 }

@@ -86,17 +86,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="owl-carousel mt-4">
-                        <div>
-                            <div class="videocontainer">
-                                <iframe width="360" height="315" style="border-radius:10px;" src="https://www.youtube-nocookie.com/embed/e-1EV6amJQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="videocontainer">
-                            <iframe width="360" height="315" style="border-radius:10px;" src="https://www.youtube-nocookie.com/embed/e-1EV6amJQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="videocontainer">
-                            <iframe width="360" height="315" style="border-radius:10px;" src="https://www.youtube-nocookie.com/embed/e-1EV6amJQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
+                        @if($youtube)
+                            @foreach ($youtube as $youtubevideo)
+                                <div class="videocontainer">
+                                    <iframe width="360" height="315" style="border-radius:10px;" src="{{$youtubevideo->videolink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            @endforeach
+                        @endif
+
                   </div>
                 </div>
             </div>
@@ -197,15 +194,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="owl-carousel mt-4">
-                        <div class="sponsercontainer">
-                            <img src="../assets/images/varanlogo2.png" class="img-fluid" style="width:200px">
-                        </div>
-                        <div class="sponsercontainer">
-                            <img src="../assets/images/varanlogo2.png" class="img-fluid" style="width:200px">
-                        </div>
-                        <div class="sponsercontainer">
-                            <img src="../assets/images/varanlogo2.png" class="img-fluid" style="width:200px">
-                        </div>
+
+                        @if($vendorimage)
+                            @foreach ($vendorimage as $img)
+                            <div class="sponsercontainer">
+                                <img src="images/{{$img->Logos}}" class="img-fluid" style="width:200px">
+                            </div>
+                            @endforeach
+                        @endif
+
+
                   </div>
                 </div>
             </div>
@@ -222,7 +220,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <img src="../assets/images/testimonial.png" class="img-fluid">
+                                        <img src="../assets/images/testimonial.png" class="img-fluid m-auto d-block">
                                     </div>
                                     <div class="col-lg-8">
                                         <h4 class="text-white mt-5"><b>Santosh Kumar weds Sristy Kumari</b></h4>
@@ -231,32 +229,25 @@
                                 </div>
                             </div>
                           </div>
-                          <div class="carousel-item">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <img src="../assets/images/testimonial.png" class="img-fluid">
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <h4 class="text-white mt-5"><b>Atanu Shome weds Aditi Dutta                                        </b></h4>
-                                        <p style="color:#fff;text-align:justify">We started interacting on 14th april 2021 and we both never imagined that by this year we will be already married . Thanks to the JS team                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <img src="../assets/images/testimonial.png" class="img-fluid">
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <h4 class="text-white mt-5"><b>Shashank Maurya weds Sweta Singh</b></h4>
-                                        <p style="color:#fff;text-align:justify">I heard a lot about JS from my friends and I found all the good words come true. The platform has few amazing features - detailed bio description, concrete relevant personal information of the users. This helped in narrowing down my search for my desired partner. </p>
+                          @if($testimonials)
+                            @foreach ($testimonials as $testi)
+                            <div class="carousel-item">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <img src="../images/{{$testi->Image}}" class="img-fluid">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h4 class="text-white mt-5"><b>{{$testi->Title}}</b></h4>
+                                            <p style="color:#fff;text-align:justify">{{$testi->Description}}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                          </div>
+                              </div>
+                            @endforeach
+                          @endif
+
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

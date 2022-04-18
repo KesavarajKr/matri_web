@@ -196,7 +196,240 @@ class bioController extends Controller
             ->where('title','=','Horoscope')
             ->first();
 
-        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages'));
+        $female_rasi="";
+        $female_star="";
+        $male_rasi="";
+        $male_star="";
+        $reg  = DB::table('registers')->where('varan_id', $userid)->first();
+        // GetGender
+        $varanid1=$reg->varan_id;
+        $gender=$reg->Gender;
+        if($gender=='Male'){
+        $male_rasi=$reg->rasi;
+        $male_star=$reg->stars;
+        }else{
+        $female_rasi=$reg->rasi;
+        $female_star=$reg->stars;
+        }
+
+        $reg  = DB::table('registers')->where('varan_id', $varanid)->first();
+        // GetGender
+        $varanid1=$reg->varan_id;
+        $gender=$reg->Gender;
+        if($gender=='Male'){
+        $male_rasi=$reg->rasi;
+        $male_star=$reg->stars;
+        }else{
+        $female_rasi=$reg->rasi;
+        $female_star=$reg->stars;
+        }
+
+
+        if($male_rasi!="" && $male_star!="" && $female_rasi!="" && $female_star!=""){
+        $horocount=DB::table('horomacth_tb')
+        ->select('no_macths', 'Status')
+        ->where('female_rasi','=',$female_rasi)
+        ->where('female_star','=',$female_star)
+        ->where('male_rasi','=',$male_rasi)
+        ->where('male_star','=',$male_star)
+        ->first();
+        }
+        else
+        {
+            $horocount = 0;
+        }
+
+        //Preference Percentage
+
+        $reg  = DB::table('registers')->where('varan_id', $varanid)->first();
+        $count=0;
+        // for age
+      $age=$reg->age;
+      if($age!=""){
+          $page = DB::table('partners')
+        ->where('age_from','<=',$age)
+        ->where('age_to','>=',$age)
+        ->where('varan_id', $userid)->count();
+        if($page=="1"){
+
+            $count=$count+1;
+        }
+      }
+
+
+        // for height
+       $height=$reg->height;
+       if($height!=""){
+         $pheight  = DB::table('partners')
+        ->where('preference_height','<=',$height)
+        ->where('preference_heightto','>=',$height)
+        ->where('varan_id', $userid)->count();
+        if($pheight=="1"){
+              $count=$count+1;
+        }
+       }
+
+
+          // for btype
+        $body_type=$reg->body_type;
+        if($body_type!=""){
+            $pbtype  = DB::table('partners')
+        ->where('preference_bodytype','LIKE', '%'.$body_type.'%')
+        ->where('varan_id', $userid)->count();
+        if($pbtype=="1"){
+              $count=$count+1;
+        }
+        }
+
+
+          // for complexion
+        $complexion=$reg->complexion;
+        if($complexion!=""){
+        $pcomplexion  = DB::table('partners')
+        ->where('preference_complexion','LIKE', '%'.$complexion.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pcomplexion=="1"){
+              $count=$count+1;
+        }
+        }
+
+            // for mstatus
+        $mstatus=$reg->marital_status;
+        if($mstatus!=""){
+        $pmstatus  = DB::table('partners')
+        ->where('marital_status','LIKE', '%'.$mstatus.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pmstatus=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+        // for educat
+        $educat=$reg->eduction;
+        if($educat!=""){
+        $peducat  = DB::table('partners')
+        ->where('preference_educat','LIKE', '%'.$educat.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($peducat=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+          // for job
+        $jobcat=$reg->job_category;
+        if($jobcat!=""){
+        $pjobcat  = DB::table('partners')
+        ->where('preference_jobcat','LIKE', '%'.$jobcat.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pjobcat=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+         // for religion
+        $religion=$reg->Religion;
+        if($religion!="")
+        {
+        $preligion  = DB::table('partners')
+        ->where('preference_religion','LIKE', '%'.$religion.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($preligion=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+            // for Caste
+        $Caste=$reg->Caste;
+        if($Caste!=""){
+        $pCaste  = DB::table('partners')
+        ->where('preference_caste','LIKE', '%'.$Caste.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pCaste=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+            // for subCaste
+        $sub_caste=$reg->sub_caste;
+        if($sub_caste!=""){
+        $psub_caste  = DB::table('partners')
+        ->where('preference_subcaste','LIKE', '%'.$sub_caste.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($psub_caste=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+               // for country
+        $country=$reg->country;
+        if($country!=""){
+        $pcountry  = DB::table('partners')
+        ->where('preference_country','LIKE', '%'.$country.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pcountry=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+              // for state
+        $state=$reg->state;
+        if($state!=""){
+        $pstate  = DB::table('partners')
+        ->where('preference_state','LIKE', '%'.$state.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pstate=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+              // for city
+        $district=$reg->district;
+        if($district!=""){
+        $pdistrict  = DB::table('partners')
+        ->where('preference_district','LIKE', '%'.$district.'%')
+        ->where('varan_id', $userid)->count();
+
+        if($pdistrict=="1"){
+
+              $count=$count+1;
+        }
+        }
+
+
+
+       $tcount=$count;
+       $count =round($count * 7.7);
+       $count1=$count/100;
+       $count1=number_format( (float)$count1, 2, '.', '');
+
+       $num = $count;
+$int = (int)$num;
+
+
+        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int'));
     }
 
     /**
@@ -243,7 +476,7 @@ class bioController extends Controller
             array(
                    'user_varan_id'     =>   $uservaranid,
                    'liked_varan_id'   =>   $partnervaranid,
-                   'Status'   =>   "Send_Interest",
+                   'Status'   =>   "Interest",
             )
         );
         date_default_timezone_set("Asia/Kolkata");

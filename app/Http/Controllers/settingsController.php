@@ -166,5 +166,39 @@ class settingsController extends Controller
         }
     }
 
+    public function hideprofile(Request $request)
+    {
+        $varanid=$request -> uservaranid;
+        $status=$request -> status;
 
+        $updatedata= DB::table('registers')
+        ->where('varan_id','=',$varanid)
+        ->update(array(
+            'account_setting'=>$status,
+        ));
+
+        if($updatedata)
+        {
+            return redirect()->back()->with('success', 'Profile Hide/Show Updated');
+        }
+    }
+
+    public function deleteprofile(Request $request)
+    {
+        $varanid=$request -> uservaranid;
+        $status=$request -> status;
+        $deletereason = $request->deletereason;
+
+        $updatedata= DB::table('registers')
+        ->where('varan_id','=',$varanid)
+        ->update(array(
+            'delete_setting'=>$status,
+            'delete_reason'=>$deletereason,
+        ));
+
+        if($updatedata)
+        {
+            return redirect()->back()->with('success', 'Delete Request Send');
+        }
+    }
 }

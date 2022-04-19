@@ -4,6 +4,7 @@ use App\Http\Controllers\aboutmeController;
 use App\Http\Controllers\basicdetailsController;
 use App\Http\Controllers\bioController;
 use App\Http\Controllers\cashfreeController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\favouriteController;
 use App\Http\Controllers\HomepageController;
@@ -164,6 +165,8 @@ Route::view('paymentresponse','pages.paymentresponse');
 
 Route::resource('redirect_url',cashfreeController::class)->middleware('shareAuth');
 
+Route::resource('chat',ChatController::class)->middleware('shareAuth');
+
 
 Route::post('redirectpage',[cashfreeController::class,'redirectpage'])->middleware('shareAuth');
 
@@ -178,6 +181,10 @@ Route::post('cancelinterest',[MailboxController::class,'cancelinterest'])->middl
 Route::post('hideprofile',[settingsController::class,'hideprofile'])->middleware('shareAuth');
 
 Route::post('deleteprofile',[settingsController::class,'deleteprofile'])->middleware('shareAuth');
+
+Route::post('storechat',[ChatController::class,'storechat'])->middleware('shareAuth');
+
+Route::post('getchat/{partnerid}/{sessionid}',[ChatController::class,'getchat'])->middleware('shareAuth');
 
 
 

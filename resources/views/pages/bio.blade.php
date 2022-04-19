@@ -145,7 +145,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Message</button>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatbox" style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Message</button>
 
                             </div>
                             <div class="container">
@@ -884,6 +884,65 @@
                 </div>
             </div>
     </section>
+
+    <div class="modal fade" id="chatbox" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Chat With Partner</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card" style="height:500px" id="elementID">
+                    {{-- <div class="card-header">
+                        <h3 class="text-center">User Name</h3>
+                      </div> --}}
+
+                    <div class="card-body" style="height:700px;overflow-y:scroll" id="appenddata">
+                        @if($chatbox)
+                            @foreach ($chatbox as $chat)
+                                @if($chat->user_id == session('LoggedUser'))
+                                <div class="alert " style="background-color:#E27B21;margin-bottom:0px" role="alert">
+                                    <h6 class="text-white" style="font-size:20px;margin-bottom:0px">{{$chat->send_message}}</h6>
+
+                                  </div>
+                                  <p style="text-align:right;font-size:13px;margin-bottom:0px;padding:5px 0px;font-weight:bold">Message Sent</p>
+                                  @else
+                                  <div class="alert" style="background-color:#DB3470;margin-bottom:0px" role="alert">
+                                    <h6 class="text-white" style="font-size:20px;margin-bottom:0px">{{$chat->send_message}}</h6>
+                                  </div>
+                                  <p style="text-align:right;font-size:13px;margin-bottom:0px;padding:5px 0px;font-weight:bold">Message Received</p>
+                                @endif
+
+
+                            @endforeach
+                        @endif
+
+
+
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        <form  id="contactForm">
+
+                            <input type="hidden" id="userid" name="userid" value="{{session('LoggedUser')}}">
+                            <input type="hidden" id="partnerid" name="partnerid" value="{{$viewid->varan_id}}">
+                            <input type="hidden" id="sendby" name="sendby" value="{{session('LoggedUser')}}">
+
+                            <div class="input-group mb-3">
+                                <input type="text" id="sendmessage" name="sendmessage" class="form-control" placeholder="Enter Message" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button type="submit" id="submit" class="btn btn-outline-secondary" style="background-color: #6d1140;color:#fff" type="button" id="button-addon2"><i class="bi bi-send-fill"></i>&nbsp;&nbsp;&nbsp;Send</button>
+
+                              </div>
+                        </form>
+                        <p id="success-message"></p>
+                      </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
 @endsection
 
 

@@ -428,8 +428,12 @@ class bioController extends Controller
        $num = $count;
 $int = (int)$num;
 
+        $chatbox = DB::table('chat_box')
+        ->select('*')
+        ->whereIn('send_by',[$userid, $varanid])
+        ->get();
 
-        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int'));
+        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int','chatbox'));
     }
 
     /**

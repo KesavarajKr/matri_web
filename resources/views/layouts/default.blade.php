@@ -163,3 +163,64 @@
 
     });
 </script>
+
+
+<script type="text/javascript">
+
+    $('#contactForm').on('submit',function(e){
+        e.preventDefault();
+
+        let userid = $('#userid').val();
+        let partnerid = $('#partnerid').val();
+        let sendby = $('#sendby').val();
+        let sendmessage = $('#sendmessage').val();
+
+        $.ajax({
+          url: '/storechat',
+          type:"POST",
+          data:{
+            "_token": "{{ csrf_token() }}",
+            userid:userid,
+            partnerid:partnerid,
+            sendby:sendby,
+            sendmessage:sendmessage,
+          },
+          success:function(response){
+
+            $('#success-message').text(response.success);
+            $("#contactForm")[0].reset();
+
+            $("#appenddata").append(
+                '<div class="alert" style="background-color:#E27B21;margin-bottom:0px" role="alert"><h6 class="text-white" style="font-size:16px;margin-bottom:0px">'+sendmessage+'</h6></div><p style="text-align:right;font-size:13px;margin-bottom:0px;font-weight:bold">Message Sent</p>'
+
+                // '<div class="alert alert-success" role="alert">'+sendmessage+'</div>'
+            );
+
+
+         }
+        });
+    });
+      </script>
+
+<script>
+   $(document).ready(function(){
+        var partnerid = $("#partnerid").val();
+        var sessionid = $("#userid").val();
+
+        fetchChat();
+        function fetchChat()
+        {
+            $.ajax({
+            data:"_token": "{{ csrf_token() }}",
+          url: '/getchat'+'/'+partnerid+'/'+sessionid,
+          type:"POST",
+          dataType:'json',
+          success:function(response){
+
+
+         }
+        });
+        }
+   });
+</script>
+

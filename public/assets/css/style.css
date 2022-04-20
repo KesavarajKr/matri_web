@@ -151,6 +151,11 @@ body
     color:#fff !important;
     /* font-size:13px !important; */
 }
+.navbar-collapse
+{
+    background-color:#6d1140 !important;
+    border-radius:0px 0px 15px 15px !important;
+}
 .slider-section
 {
     background-image: url('../images/flower_bg.png');
@@ -469,6 +474,8 @@ cursor: pointer;
     .social {
         position: fixed;
         top: 30%;
+        width:0px;
+        z-index:9999;
       }
 
       .social ul {
@@ -976,4 +983,130 @@ margin-top:-70px;
     padding:15px 0px;
     font-weight:bold;
     color:#fff !important
+}
+
+.privacy-container
+{
+    padding:120px 0px;
+}
+.videoiframe
+{
+    width:360px;
+    height:315px;
+}
+    .sociallinks ul
+    {
+        list-style: none;
+        display:flex;
+        padding-left:0px;
+    }
+    .sociallinks ul li
+    {
+        margin:0px 10px;
+    }
+    .sociallinks ul li a
+    {
+        color:#fff;
+        font-size:18px;
+    }
+    .mblopen
+    {
+        width:50px;
+        height:50px;
+        background-color: #6d1140;
+        color:#fff;
+        position:fixed;
+        top:50%;
+        right:5%;
+        border-radius:50%;
+        z-index:9999;
+        display:none;
+    }
+    .mblopen i
+    {
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        font-size:20px;
+        color:#fff;
+    }
+@media only screen and (max-width:600px)
+{
+    .login-img
+    {
+        display:none !important;
+    }
+    .navbar-design .navbar-nav
+    {
+        margin-right:0px !important;
+        margin-top:19px !important;
+        border-top:2px solid #fff !important;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        text-align: center !important;
+    }
+    .loginbtn
+    {
+        margin:0 auto !important;
+        display: block !important;
+    }
+    .banner-content
+    {
+        width:100%;
+    }
+    .carouseldesign
+    {
+        width:320px !important;
+    }
+    .videoiframe
+    {
+        width:100% !important;
+        height:280px;
+    }
+    .slider-section p
+    {
+        font-size:15px !important;
+    }
+    .form-container
+    {
+        margin-left:0px !important;
+    }
+    .register-img
+    {
+        display:none !important;
+    }
+    .select2-dropdown .select2-dropdown--below
+    {
+        width:250px !important
+    }
+    .otp-image
+    {
+        display:none !important
+    }
+    .menuicons
+    {
+        overflow-x:scroll;
+    }
+    .menuicons li
+    {
+        padding:15px 29px !important;
+    }
+    .formcontainer
+    {
+        padding:20px 0px !important;
+    }
+    .vendorimg
+    {
+        display:none !important;
+    }
+    .social
+    {
+        display:none;
+    }
+    .mblopen
+    {
+        display: block !important;
+    }
+
 }

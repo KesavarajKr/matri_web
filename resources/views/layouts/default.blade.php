@@ -34,12 +34,13 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="assets/js/owl.carousel.js"></script>
-
+    {{-- <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
     -->
   </body>
 </html>
@@ -123,7 +124,7 @@
     nav:false,
     responsive:{
         0:{
-            items:3
+            items:1
         },
         600:{
             items:3
@@ -223,4 +224,19 @@
         }
    });
 </script>
+
+<script type="text/javascript">
+function myFunction(event) {
+  var x = event.which || event.keyCode;
+//   alert(x);
+  if(x == 97 || x == 98 || x == 99 || x == 100 || x == 101 || x == 102 || x == 103 || x == 104 || x == 105 || x == 106 || x ==107 || x == 108 || x == 109 || x == 110 || x == 111 || x == 112 || x == 113 || x == 114 || x == 115|| x == 116|| x == 117|| x == 118|| x == 119|| x == 120|| x == 121|| x == 122)
+       {
+           alert("Do Not Use Letters Only Number Allowed");
+           return false;
+       }
+
+}
+
+</script>
+
 

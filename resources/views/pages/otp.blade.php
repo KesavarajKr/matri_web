@@ -8,7 +8,7 @@
                 <div class="register-inner">
                 <div class="row">
                     <div class="col-lg-4 " >
-                        <img src="assets/images/image 4.png" class="img-fluid" style="padding:0px;margin-top:10px;border-radius:50px 0px 0px 50px;width:100%;height:380px">
+                        <img src="assets/images/image 4.png" class="img-fluid otp-image" style="padding:0px;margin-top:10px;border-radius:50px 0px 0px 50px;width:100%;height:380px">
                     </div>
                     <div class="col-lg-8 ">
                         <div class="form-container">

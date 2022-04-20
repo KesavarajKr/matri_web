@@ -15,22 +15,22 @@
                                     @csrf
                                 <div class="row">
 
-                                    <div class="col-3">
-                                        <input type="text" class="form-control form-design name" name="name" placeholder="Name">
+                                    <div class="col-lg-3 col-sm-6 mt-2">
+                                        <input type="text" class="form-control form-design name" name="name" placeholder="Name" maxlength="30" required>
                                     </div>
-                                    <div class="col-3">
-                                        <select class="form-design form-control gender select2" style="background-color:#fff" name="gender">
-                                               <option value="gender">Gender</option>
+                                    <div class="col-lg-3 col-sm-6 mt-2">
+                                        <select class="form-design form-control gender select2" style="background-color:#fff" name="gender" required>
+                                               <option value="">Gender</option>
                                                <option value="Male">Male</option>
                                                <option value="Female">Female</option>
                                         </select>
 
                                     </div>
-                                    <div class="col-3">
-                                        <input type="number" class="form-control form-design pnumber" name="pnumber" placeholder="Mobile Number" >
+                                    <div class="col-lg-3 col-sm-12 mt-2">
+                                        <input type="text" class="form-control form-design pnumber" name="pnumber" placeholder="Mobile Number" onkeypress="return myFunction(event)" maxlength="10">
                                     </div>
-                                    <div class="col-3">
-                                        <button type="submit" class="btn btn-default btnstyle registerbtn" style="width:150px;height:45px">REGISTER FREE</button>
+                                    <div class="col-lg-3 col-sm-12 mt-2">
+                                        <button type="submit" class="btn btn-default btnstyle registerbtn" style="width:100%;height:45px">REGISTER FREE</button>
                                     </div>
 
 
@@ -46,14 +46,14 @@
         <h3 class="text-center mb-5 text-white"><b>Why Choose VARAN?</b></h3>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <img src="assets/images/Group_2.png"  class="img-fluid m-auto d-block">
+                <div class="col-lg-4 mt-2">
+                    <img src="assets/images/Group_2.png"  class="img-fluid m-auto d-block" style="width:300px">
                 </div>
-                <div class="col-lg-4">
-                    <img src="assets/images/Group_1.png" class="img-fluid m-auto d-block">
+                <div class="col-lg-4 mt-2">
+                    <img src="assets/images/Group_1.png" class="img-fluid m-auto d-block" style="width:300px">
                 </div>
-                <div class="col-lg-4">
-                    <img src="assets/images/Group_3.png" class="img-fluid m-auto d-block">
+                <div class="col-lg-4 mt-2">
+                    <img src="assets/images/Group_3.png" class="img-fluid m-auto d-block" style="width:300px">
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="assets/images/mobil_app.png" class="img-fluid">
+                    <img src="assets/images/mobil_app.png" class="img-fluid m-auto d-block">
                 </div>
                 <div class="col-lg-2">
                     <img src="assets/images/android.png" class="img-fluid" style="margin-top:80px">
@@ -89,7 +89,7 @@
                         @if($youtube)
                             @foreach ($youtube as $youtubevideo)
                                 <div class="videocontainer">
-                                    <iframe width="360" height="315" style="border-radius:10px;" src="{{$youtubevideo->videolink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe class="videoiframe"  style="border-radius:10px;" src="{{$youtubevideo->videolink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             @endforeach
                         @endif

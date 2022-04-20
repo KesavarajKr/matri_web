@@ -29,9 +29,7 @@
                     <li>Stay Secure</li> --}}
                 </ul>
                 <h5 class="text-white mt-5">Select Language</h5>
-                <select class="form-control">
-                    <option value="">Language</option>
-                </select>
+                {{-- <div id="google_translate_element"></div> --}}
             </div>
             <div class="col-lg-3">
                 <ul class="footer-ul" style="padding-left:0px">
@@ -48,6 +46,16 @@
                 <p><a style="color:#fff;text-decoration:none" href="tel:8940522022">+91-8940522022</a></p>
                 <p><a style="color:#fff;text-decoration:none" href="malto:helpdesk@varan2varan.com">helpdesk@varan2varan.com</a></p>
                 {{-- <img src="assets/images/LOGO_for App.png" class="img-fluid" style="margin:30px auto;display:block"> --}}
+                <div class="sociallinks">
+                    <ul>
+                        <li class="twitter"><a href="https://twitter.com/CommunityVaran" target="_blank"><i class="bi bi-twitter" aria-hidden="true"></i></a></li>
+      <li class="facebook"><a href="https://www.facebook.com/Varan2varan-114581607889688" target="_blank"><i class="bi bi-facebook" aria-hidden="true"></i></a></li>
+      {{-- <li class="google-plus"><a href="https://codepen.io/collection/XdWJOQ/">Google plus<i class="fa fa-google-plus" aria-hidden="true"></i></a></li> --}}
+      <li class="instagram"><a href="https://www.instagram.com/communityvaran/" target="_blank"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+      <li class="instagram"><a href="https://www.youtube.com/channel/UCTmT3G0F7ohN6lqcpnSEC5Q" target="_blank"><i class="bi bi-youtube" aria-hidden="true"></i></a></li>
+      <li class="instagram"><a href="tel:+91-8940322022" ><i class="bi bi-headset" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

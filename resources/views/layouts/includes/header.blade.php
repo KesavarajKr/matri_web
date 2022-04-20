@@ -8,9 +8,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-globe"></i>&nbsp;&nbsp;English</a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-globe"></i>&nbsp;&nbsp;Premium</a>
           </li>
@@ -81,6 +81,11 @@
   <a href="https://api.whatsapp.com/send?phone=+91-8940322022" title="whatsapp" class="btn btn-default whatsapp-btn">
     <i class="bi bi-whatsapp"></i>
 </a>
+@if (session('LoggedUser') == '')
+    @else
+    <a  class="mblopen loginopen"><i class="bi bi-person-circle" aria-hidden="true"></i></a>
+@endif
+
 <div class="social">
     <ul>
       <li class="twitter"><a href="https://twitter.com/CommunityVaran" target="_blank">Twitter<i class="bi bi-twitter" aria-hidden="true"></i></a></li>

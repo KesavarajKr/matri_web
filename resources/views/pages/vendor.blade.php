@@ -8,7 +8,7 @@
                 <div class="register-inner">
                 <div class="row">
                     <div class="col-lg-6 " >
-                        <img src="http://www.behindwoods.com/tamil-movies/slideshow/tamil-cinema-celebrities-wedding-photos/images/keerthana-parthiepan.jpg" class="img-fluid" style="padding:0px;margin-top:10px;border-radius:50px 0px 0px 50px;">
+                        <img src="http://www.behindwoods.com/tamil-movies/slideshow/tamil-cinema-celebrities-wedding-photos/images/keerthana-parthiepan.jpg" class="img-fluid vendorimg" style="padding:0px;margin-top:10px;border-radius:50px 0px 0px 50px;">
                     </div>
                     <div class="col-lg-6 ">
                         <div class="form-container">

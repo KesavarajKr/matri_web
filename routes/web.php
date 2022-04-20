@@ -53,7 +53,7 @@ Route::view('images','pages.images');
 Route::view('forgott','pages.forgott');
 Route::view('forgott_otp','pages.forgott_otp');
 Route::view('myprofile','pages.myprofile');
-// Route::view('premiummatches','pages.premium');
+Route::view('privacy-policy','pages.privacypolicy');
 
 Route::Post('login',[LoginController::class,'authenticate']);
 Route::post('postData',[registerController::class,'passData']);

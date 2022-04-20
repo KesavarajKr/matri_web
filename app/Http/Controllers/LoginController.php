@@ -124,8 +124,15 @@ class LoginController extends Controller
                     if($usercheck->count() == 1)
                     {
                         $request->session()->put('LoggedUser',$user->varan_id);
+
+                        $ip = $request->ip();
+                        $varanid=$user->varan_id;
+
+                        $updatedata= DB::table('logdetails_tb')->insert(
+                            ['user_id' => $varanid, 'user_ip' => $ip]);
                         return redirect('aboutme');
                         // return "Approved";
+
                     }
                     else
                     {

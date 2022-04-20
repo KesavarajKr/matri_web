@@ -7,11 +7,11 @@
             <div class="container">
                 <div class="register-inner">
                 <div class="row">
-                    <div class="col-lg-6 " >
-                        <img src="https://brnodaily.com/wp-content/uploads/2020/06/wedding-placing-rings-credit-freepik.jpg" class="img-fluid" style="padding:0px;margin-top:10px;border-radius:50px 0px 0px 50px">
+                    <div class="col-lg-6 col-sm-12" >
+                        <img src="https://brnodaily.com/wp-content/uploads/2020/06/wedding-placing-rings-credit-freepik.jpg" class="img-fluid login-img" style="padding:0px;margin-top:10px;border-radius:50px 0px 0px 50px">
                     </div>
-                    <div class="col-lg-6 ">
-                        <div class="form-container">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="form-container login-container">
                             <div class="container">
                                <h3 class="text-center text-white">Let’s get started now!</h3>
                                 <p class="text-center text-white">Login and find your life partner</p>
@@ -27,7 +27,7 @@
 
                                     <div class="form-group">
                                         <label style="color:#fff">Mobile number</label>
-                                        <input type="text" class="form-control mt-2 form-design-2" name="mblnum" placeholder="Enter Mobile Number" required>
+                                        <input type="text" class="form-control mt-2 form-design-2" name="mblnum" placeholder="Enter Mobile Number" required onkeypress="return myFunction(event)">
                                     </div>
                                     <div class="form-group mt-3">
                                         <label style="color:#fff">Password</label>

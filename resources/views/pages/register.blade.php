@@ -8,10 +8,10 @@
                 <div class="register-inner">
                 <div class="row">
                     <div class="col-lg-4 " >
-                        <img src="assets/images/couple-img.png" class="img-fluid" style="padding:0px;margin-top:25px;border-radius:50px 0px 0px 50px">
+                        <img src="assets/images/couple-img.png" class="img-fluid register-img" style="padding:0px;margin-top:25px;border-radius:50px 0px 0px 50px">
                     </div>
                     <div class="col-lg-8 ">
-                        <div class="form-container">
+                        <div class="form-container ">
                             <form method="POST" action="{{route('register.store')}}">
                                 @csrf
 

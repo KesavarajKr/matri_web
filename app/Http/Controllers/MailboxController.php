@@ -269,6 +269,16 @@ $query=DB::table('registers')
         ->update(array(
             'partner_status'=>1,
         ));
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+        DB::table('trackings')->insert(
+            [
+                'user_varan_id' => $varanid,
+                'partner_varan_id' => $userid,
+                'purpose' => 'Interest_Accepted',
+                'created_at' => $datetime
+            ]);
+
 
         if($updatedata)
         {
@@ -287,6 +297,16 @@ $query=DB::table('registers')
         ->update(array(
             'partner_status'=>2,
         ));
+
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+        DB::table('trackings')->insert(
+            [
+                'user_varan_id' => $varanid,
+                'partner_varan_id' => $userid,
+                'purpose' => 'Interest_Rejected',
+                'created_at' => $datetime
+            ]);
 
         if($updatedata)
         {
@@ -368,6 +388,15 @@ $query=DB::table('registers')
         ->where('liked_varan_id', $userid)
         ->delete();
 
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+        DB::table('trackings')->insert(
+            [
+                'user_varan_id' => $varanid,
+                'partner_varan_id' => $userid,
+                'purpose' => 'Canceled_interest',
+                'created_at' => $datetime
+            ]);
         if($updatedata)
         {
             return redirect('/mailbox')->with('success',' Interest Canceled');

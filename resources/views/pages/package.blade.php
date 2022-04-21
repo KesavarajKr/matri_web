@@ -35,7 +35,7 @@
                                                 @csrf
                                                 <input type="hidden" class="form-control" name="appId" placeholder="Enter App ID here (Ex. 123456a7890bc123defg4567)" value="154027598f23c4090af1ab2dc2720451"/>
 
-                                                    <input type="hidden" class="form-control" name="orderId" placeholder="Enter Order ID here (Ex. order00001)" value="PAY-VAR-{{$userpackagecount->count()+1}}"/>
+                                                    <input type="hidden" class="form-control" name="orderId" placeholder="Enter Order ID here (Ex. order00001)" value="Pack-{{$userpackagecount->count()+1}}"/>
                                                 <input type="hidden" class="form-control" name="orderAmount" placeholder="Enter Order Amount here (Ex. 100)" value="{{$pack->package_price}}"/>
                                                 <input type="hidden" class="form-control" name="orderCurrency" value="INR" placeholder="Enter Currency here (Ex. INR)"/>
                                                 <input type="hidden" class="form-control" name="orderNote" placeholder="Enter Order Note here (Ex. Test order)" value="{{$pack->package_name}}"/>

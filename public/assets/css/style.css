@@ -1031,6 +1031,10 @@ margin-top:-70px;
         font-size:20px;
         color:#fff;
     }
+    .premiumbtn
+    {
+        color:#000;font-weight:bold;border:0px;border-radius:50px;background-image: linear-gradient(to right, #E2C887 0%, #E2C887 41%, #B98E44 100%) !important;
+    }
 @media only screen and (max-width:600px)
 {
     .login-img
@@ -1107,6 +1111,18 @@ margin-top:-70px;
     .mblopen
     {
         display: block !important;
+    }
+    .matches-container .profile-name {
+        font-size:20px !important;
+        margin-top:20px;
+    }
+    .profilematches span
+    {
+        font-size:13px !important;
+    }
+    .profilematches img
+    {
+        width:20px !important;
     }
 
 }

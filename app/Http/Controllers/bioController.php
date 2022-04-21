@@ -53,7 +53,11 @@ class bioController extends Controller
         $varanid = $register->varan_id;
         $reg  = DB::table('registers')->where('varan_id', $userid)->first();
 
-
+        $approvedstatus  = DB::table('privacyphotolist')
+     ->where('partner_id', $varanid)
+     ->where('photoid', $userid)
+     ->where('status', 1)
+     ->get()->count();
     // GetGender
 
     $gender=$reg->Gender;
@@ -77,6 +81,8 @@ class bioController extends Controller
 
         WHEN images.privacy_type = "'.$privacystatus.'" THEN "0"
 
+        WHEN "'.$approvedstatus.'" = 1 THEN "0"
+
         ELSE null
 
         END) AS imageview'),
@@ -94,7 +100,7 @@ class bioController extends Controller
         WHEN registers.cprivacy_setting = "All" THEN "0"
 
         WHEN registers.cprivacy_setting = "'.$privacystatus.'" THEN "0"
-
+        WHEN "'.$approvedstatus.'" = 1 THEN "0"
         ELSE null
 
         END) AS contactview'),
@@ -433,7 +439,91 @@ $int = (int)$num;
         ->whereIn('send_by',[$userid, $varanid])
         ->get();
 
-        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int','chatbox'));
+        $enablechat="";
+
+     date_default_timezone_set("Asia/Kolkata");
+     $datetime = date('Y-m-d h:i:s');
+       $chatoption = DB::table('user_package')
+            ->select('enable_chat')
+             ->where('user_varan_id',$userid)
+             ->where('validity_date', '>=', $datetime)
+             ->where('status','=','0')
+            ->first();
+
+            date_default_timezone_set("Asia/Kolkata");
+     $datetime = date('Y-m-d h:i:s');
+        $enablehoro = DB::table('user_package')
+            ->select('enable_horoschope')
+            ->where('user_varan_id',$userid)
+             ->where('validity_date', '>=', $datetime)
+             ->where('status','=','0')
+            ->first();
+
+            $register = DB::table('registers')
+            ->select('*')
+            ->where('varan_id','=',$varanid)
+            ->first();
+            $membership = $register->member_shiptype;
+
+            if($membership == 0)
+            {
+
+            }
+            else
+            {
+                $noofphoneno=0;
+                $viewedphoneno=0;
+
+            date_default_timezone_set("Asia/Kolkata");
+            $datetime = date('Y-m-d h:i:s');
+
+                $phoneno = DB::table('user_package')
+                ->select('no_of_phno','no_of_phno_viewed')
+                ->where('user_varan_id', '=', $userid)
+                ->where('status', '=', '0')
+                ->where('validity_date', '>=', $datetime)
+                ->first();
+
+                if($phoneno)
+                {
+                $noofphoneno= $phoneno->no_of_phno;
+                $viewedphoneno= $phoneno->no_of_phno_viewed;
+                $viewed = DB::table('vieweds')
+                ->select('uservaran_id')
+                ->where('uservaran_id', '=', $id)
+                ->where('partner_varan_id', '=', $varanid)
+                ->where('phn_num_view_status', '=','1')
+                ->get()->count();
+                }
+            }
+
+            $insertviewds = DB::table('vieweds')
+            ->select('uservaran_id')
+            ->where('uservaran_id', '=', $userid)
+            ->where('partner_varan_id', '=', $varanid)
+            ->get()->count();
+
+            date_default_timezone_set("Asia/Kolkata");
+                          $datetime = date('Y-m-d h:i:s');
+            if($insertviewds == 0)
+            {
+                $insert = DB::table('vieweds')->insert(
+                    array(
+                        'uservaran_id'     =>   $userid,
+                        'partner_varan_id'   =>   $varanid,
+                        'created_at'   =>   $datetime,
+                    )
+                );
+            }
+
+            $privactphoto = DB::table('privacyphotolist')
+            ->select('*')
+            ->where('photoid', '=', $userid)
+            ->where('partner_id', '=', $varanid)
+            ->where('status', '=', '1')
+            ->get()->count();
+
+        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int','chatbox','chatoption','enablehoro','noofphoneno','viewedphoneno','viewed','privactphoto'));
     }
 
     /**
@@ -499,5 +589,59 @@ $int = (int)$num;
         {
             return back()->with('success','Interest Send');
         }
+    }
+
+    public function updatenumuserpackage(Request $request)
+    {
+        $userid = session('LoggedUser');
+        $partnerid = $request->partnerid;
+
+        date_default_timezone_set("Asia/Kolkata");
+      $datetime = date('Y-m-d h:i:s');
+      $viewed = DB::table('vieweds')
+            ->select('uservaran_id')
+            ->where('uservaran_id', '=', $userid)
+            ->where('partner_varan_id', '=', $partnerid)
+            ->where('phn_num_view_status', '=', 0)
+            ->get()->count();
+            // dd($viewed);
+            if($viewed!=0){
+
+        $updatedata= DB::table('vieweds')->where('uservaran_id',$userid)
+        ->where('partner_varan_id',$partnerid)->update(array(
+                                 'phn_num_view_status'=> 1,
+        ));
+        $updateuserpackage= DB::table('user_package')->where('user_varan_id',$userid)
+        ->where('validity_date', '>=', $datetime)
+        ->where('status','=','0')
+        ->update(array(
+                                 'no_of_phno_viewed'=>DB::raw('no_of_phno_viewed+1'),
+        ));
+
+        }
+
+
+        return back();
+    }
+
+    public function insertrequest(Request $request)
+    {
+        $userid = session('LoggedUser');
+        $varanid = $request -> partnerid;
+
+        $register = DB::table('privacyphotolist')
+            ->select('photoid')
+            ->where('photoid', '=', $userid)
+            ->where('partner_id', '=', $varanid)
+            ->where('status', '=', 0)
+            ->get()->count();
+
+            if($register==0){
+
+                $savedata= DB::table('privacyphotolist')->insert(
+        ['photoid' => $userid, 'partner_id' => $varanid]);
+                }
+
+                return back();
     }
 }

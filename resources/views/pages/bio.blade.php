@@ -145,7 +145,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatbox" style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Message</button>
+                                {{-- @dd($chatoption); --}}
+                                @if($chatoption)
+                                    @if($chatoption->enable_chat == 'Yes')
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatbox" style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Message</button>
+                                    @endif
+                                    @else
+                                    <button class="btn btn-primary"  style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Upgrade Premium chat with {{$viewid->Name}}</button>
+                                @endif
+
+
 
                             </div>
                             <div class="container">
@@ -319,16 +328,65 @@
                                                             <th>Gender</th>
                                                             <td> {{$viewid->Gender}}</td>
                                                             <th>Mobile Number</th>
-                                                            @if($viewid->contactview == '0')
-                                                            <td>
-                                                                @if($viewid->mobile_no == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->mobile_no}}
-                                                            @endif</td>
-                                                                @else
-                                                                <td>+91-<span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXXXX</span></td>
+
+                                                            @if($noofphoneno)
+                                                                @if($noofphoneno == $viewedphoneno)
+
+                                                                        @if($viewed == 1)
+                                                                            <td>
+                                                                                @if($viewid->mobile_no == "")
+                                                                                -
+                                                                                @else
+                                                                                {{$viewid->mobile_no}}
+                                                                                @endif
+                                                                            </td>
+                                                                            @else
+                                                                            <td>
+                                                                                <a href="/package" class="btn btn-primary premiumbtn">Update Premium</a>
+                                                                            </td>
+                                                                        @endif
+
+                                                                    @else
+
+                                                                    @if($viewid->contactview == '0')
+                                                                        <td>
+                                                                        @if($viewid->mobile_no == "")
+                                                                        -
+                                                                        @else
+                                                                            <form method="POST" action="/updatenumuserpackage">
+                                                                                @csrf
+                                                                                <input type="hidden" name="partnerid" value="{{$viewid->varan_id}}">
+
+                                                                                @if ($privactphoto == 1)
+                                                                                    {{$viewid->mobile_no}}
+                                                                                    @else
+                                                                                    <button type="submit" class="btn btn-primary">View</button>
+                                                                                @endif
+
+
+
+                                                                            </form>
+
+
+                                                                        @endif
+                                                                        </td>
+                                                                        @else
+                                                                        <td>
+                                                                            <form method="POST" action="/insertrequest">
+                                                                                @csrf
+                                                                                <input type="hidden" name="partnerid" value="{{$viewid->varan_id}}">
+                                                                                <button type="submit" class="btn btn-primary">Request Button</button>
+                                                                            </form>
+
+
+                                                                        </td>
+
+                                                                        @endif
+
+                                                                @endif
+
                                                             @endif
+
 
 
                                                         </tr>
@@ -867,11 +925,21 @@
                                                     </tbody>
                                                 </table>
                                                 <h5 style="font-weight:bold;margin-left:20px;">Horoscope Image</h5>
-                                                @if($viewid->Himageview == '0')
-                                                    <img src="../images/{{$horoscopeimages->img_name}}" class="img-fluid">
+                                                @if($enablehoro)
+                                                    @if($enablehoro->enable_horoschope == 'Yes')
+                                                        @if($viewid->Himageview == '0')
+                                                            <img src="../images/{{$horoscopeimages->img_name}}" class="img-fluid">
+                                                            @else
+                                                            <img src="../assets/images/imagelocked.png" class="img-fluid m-auto d-block">
+                                                        @endif
+                                                    @endif
                                                     @else
-                                                    <img src="../assets/images/imagelocked.png" class="img-fluid m-auto d-block">
+                                                    <a href="/package" style="text-center;text-decoration:none">
+                                                        <img src="../assets/images/imagelocked.png" class="img-fluid m-auto d-block"><br>
+                                                        <button class="btn btn-primary premiumbtn  m-auto d-block">Upgrade Premium</button>
+                                                    </a>
                                                 @endif
+
 
                                             </div>
 

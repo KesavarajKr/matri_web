@@ -68,10 +68,31 @@
                                     <div class="col-lg-4">
                                         <h6 class="text-center mt-4" style="font-weight:bold">My Photos <span>{{$imgcount->count()}}</span></h6>
                                         <h6 style="text-align:center"><button data-bs-toggle="modal" data-bs-target="#imageview" class="btn btn-default btn-sm" style="background-color:#6d1140;color:#fff"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp; View Images</button></h6>
-                                        <div class="imagecontainer" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <div class="imagecontainer" >
 
                                             <div class="iconbox">
-                                                <i class="bi bi-plus-circle"></i>
+                                                @if($register->member_shiptype == '0')
+                                                    @if($imagecount == 2)
+                                                        <a href="/package" class="btn btn-primary premiumbtn btn-sm">Update Premium</a>
+                                                        @else
+                                                        <i class="bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                                                     @endif
+
+                                                     @else
+
+                                                     @if($premiumimage)
+
+                                                        @if($premiumimage->no_of_image == $premiumimage->no_of_image_upload)
+                                                        <a href="/package" class="btn btn-primary premiumbtn btn-sm">Update Premium</a>
+                                                            @else
+                                                            <i class="bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                                                        @endif
+                                                        @else
+                                                        <a href="/package" class="btn btn-primary premiumbtn btn-sm">Update Premium</a>
+                                                     @endif
+                                                @endif
+
+
                                                 {{-- <i class="bi bi-eye-fill"></i> --}}
                                             </div>
 
@@ -80,10 +101,30 @@
                                     <div class="col-lg-4">
                                         <h6 class="text-center mt-4" style="font-weight:bold">My Videos <span>{{$videocount->count()}}</span></h6>
                                         <h6 style="text-align:center"><button data-bs-toggle="modal" data-bs-target="#videoview" class="btn btn-default btn-sm" style="background-color:#6d1140;color:#fff"><i class="bi bi-eye-fill"></i>&nbsp;&nbsp; View Videos</button></h6>
-                                        <div class="imagecontainer" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                        <div class="imagecontainer">
 
                                             <div class="iconbox">
-                                                <i class="bi bi-plus-circle"></i>
+                                                @if($register->member_shiptype == '0')
+                                                    @if($approvevideocount == 2)
+                                                        <a href="/package" class="btn btn-primary premiumbtn btn-sm">Update Premium</a>
+                                                        @else
+                                                        <i class="bi bi-plus-circle"  data-bs-toggle="modal" data-bs-target="#exampleModal1"></i>
+                                                     @endif
+
+                                                     @else
+
+                                                     @if($premiumvideo)
+
+                                                        @if($premiumvideo->no_of_video == $premiumvideo->no_of_video_upload)
+                                                            <a href="/package" class="btn btn-primary premiumbtn btn-sm">Update Premium</a>
+                                                            @else
+                                                            <i class="bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#exampleModal1"></i>
+                                                        @endif
+                                                        @else
+                                                        <a href="/package" class="btn btn-primary premiumbtn btn-sm">Update Premium</a>
+                                                     @endif
+                                                @endif
+                                                {{-- <i class="bi bi-plus-circle"></i> --}}
                                             </div>
                                         </div>
                                     </div>

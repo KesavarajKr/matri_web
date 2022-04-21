@@ -120,6 +120,10 @@ class PackageController extends Controller
         $enable_horoschope = $request->enable_horoschope;
         $validity_date = $request->validity_date;
 
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+        $expiredate = date('Y-m-d H:i:s',strtotime('+'.$validity_date.' days',strtotime($datetime)));
+
         $inserpackage = DB::table('user_package')->insert(
             array(
                    'user_varan_id'   =>   $varanid,
@@ -130,7 +134,7 @@ class PackageController extends Controller
                    'no_of_phno'   =>   $no_of_phno,
                    'enable_chat'   =>   $enable_chat,
                    'enable_horoschope'   =>   $enable_horoschope,
-                   'validity_date'   =>   $validity_date,
+                   'validity_date'   =>   $expiredate,
                    'payment_status' => 'Pending',
                    'payment_id' => $orderId
             )

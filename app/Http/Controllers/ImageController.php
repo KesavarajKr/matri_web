@@ -174,7 +174,50 @@ class ImageController extends Controller
             ->where('varan_id','=',$varanid)
             ->get();
 
-        return view('pages.images',compact('imgcount','videocount','horoscopecount','count1','allimages','allvideos','allhoroscope'));
+            $imagecount = DB::table('images')
+            ->select('image_name')
+            ->where('approve_status', '<>', "2")
+            ->where('varanid', '=', $varanid)
+            ->get()->count();
+
+            $noofimage=0;
+            $uploadimage=0;
+
+            date_default_timezone_set("Asia/Kolkata");
+            $datetime = date('Y-m-d h:i:s');
+
+            $register = DB::table('registers')
+            ->select('*')
+            ->where('varan_id','=',$varanid)
+            ->first();
+
+            $premiumimage = DB::table('user_package')
+            ->select('no_of_image','no_of_image_upload')
+            ->where('user_varan_id', '=', $varanid)
+            ->where('status', '=', '0')
+            ->where('validity_date', '>=', $datetime)
+            ->first();
+
+            $approvevideocount = DB::table('videos')
+            ->select('video_name')
+            ->where('video_status', '<>', "2")
+            ->where('varan_id', '=', $varanid)
+            ->get()->count();
+
+            $noofvideo=0;
+            $uploadvideo=0;
+
+             date_default_timezone_set("Asia/Kolkata");
+             $datetime = date('Y-m-d h:i:s');
+
+                 $premiumvideo = DB::table('user_package')
+                ->select('no_of_video','no_of_video_upload')
+                ->where('user_varan_id', '=', $varanid)
+                ->where('status', '=', '0')
+                ->where('validity_date', '>=', $datetime)
+                ->first();
+
+        return view('pages.images',compact('imgcount','videocount','horoscopecount','count1','allimages','allvideos','allhoroscope','imagecount','premiumimage','register','approvevideocount','premiumvideo'));
     }
 
     /**
@@ -294,6 +337,22 @@ class ImageController extends Controller
                         )
                         );
                 }
+                $register = DB::table('registers')
+            ->select('*')
+            ->where('varan_id','=',$varanid)
+            ->first();
+            $membership = $register->member_shiptype;
+
+                if($membership==1){
+                    date_default_timezone_set("Asia/Kolkata");
+                          $datetime = date('Y-m-d h:i:s');
+                          $updatedata= DB::table('user_package')->where('user_varan_id',$varanid)
+                          ->where('validity_date', '>=', $datetime)
+                          ->where('status','=','0')
+                          ->update(array(
+                               'no_of_image_upload'=>DB::raw('no_of_image_upload+1'),
+                   ));
+              }
 
                 if($uploadimage)
                 {
@@ -333,6 +392,24 @@ class ImageController extends Controller
                         'varan_id'   =>   $varanid,
                     )
                 );
+                $register = DB::table('registers')
+                ->select('*')
+                ->where('varan_id','=',$varanid)
+                ->first();
+                $membership = $register->member_shiptype;
+
+                if($membership==1){
+                    date_default_timezone_set("Asia/Kolkata");
+                          $datetime = date('Y-m-d h:i:s');
+                    $updatedata= DB::table('user_package')->where('user_varan_id',$varanid)
+                    ->where('validity_date', '>=', $datetime)
+                    ->where('status','=','0')
+                    ->update(array(
+                         'no_of_video_upload'=>DB::raw('no_of_video_upload+1'),
+));
+
+
+        }
 
                 if($uploadimage)
                 {

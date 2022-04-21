@@ -106,15 +106,41 @@ class cashfreeController extends Controller
         if ($signature == $computedSignature) {
             if ($txStatus == 'SUCCESS'){
                 // success query
-                     $updatepackage= DB::table('user_package')->where('payment_id',$orderId)->update(array(
+                $getuservaranid = DB::table('user_package')
+                    ->select('*')
+                    ->where('payment_id','=',$orderId)
+                    ->first();
+
+                $varanid = $getuservaranid->user_varan_id;
+
+                $getvaranid = DB::table('registers')
+                    ->select('*')
+                    ->where('varan_id','=',$varanid)
+                    ->first();
+                    // dd($getvaranid);
+                    $statuschange= DB::table('user_package')->where('user_varan_id',$getvaranid->varan_id)
+        ->where('status','0')
+        ->update(array(
+                                 'status'=>'1',
+        ));
+            if($statuschange)
+            {
+                $updatepackage= DB::table('user_package')->where('payment_id',$orderId)->update(array(
                     'payment_status'=>'Success',
+                    'status'=>'0',
                 ));
+            }
+
+
+
+
 
                 $userdetails = DB::table('user_package')
                         ->select('*')
                         ->where('payment_id','=',$orderId)
                         ->first();
                 $varanid = $userdetails->user_varan_id;
+
 
                 $updateregister= DB::table('registers')->where('varan_id',$varanid)->update(array(
                     'member_shiptype'=>1,

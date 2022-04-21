@@ -54,6 +54,7 @@ class favouriteController extends Controller
   ->leftJoin('states','registers.state','=','states.state_id')
   ->leftJoin('eductiondetails_tb','registers.eduction','=','eductiondetails_tb.id')
   ->leftJoin('regli_tb','registers.Religion','=','regli_tb.id')
+  ->where('registers.status', '<>', '0')
   ->leftJoin('images',function($query) {
       $query->on('registers.varan_id','=','images.varanid')
       ->where('images.approve_status','<>','0')

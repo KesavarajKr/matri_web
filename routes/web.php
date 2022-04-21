@@ -187,5 +187,6 @@ Route::post('storechat',[ChatController::class,'storechat'])->middleware('shareA
 Route::post('getchat/{partnerid}/{sessionid}',[ChatController::class,'getchat'])->middleware('shareAuth');
 
 
-
+Route::post('updatenumuserpackage',[bioController::class,'updatenumuserpackage'])->middleware('shareAuth');
+Route::post('insertrequest',[bioController::class,'insertrequest'])->middleware('shareAuth');
 

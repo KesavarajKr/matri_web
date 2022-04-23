@@ -7,7 +7,7 @@
 
             <div class="container">
                 <div class="register-inner">
-                    <div class="row">
+                    <div class="row ">
 
                         <div class="col-lg-3 align-items-center text-center">
                             <div class="card profilebox">
@@ -84,7 +84,15 @@
                         <div class="col-lg-9">
                             <div class="card profile-info">
                                 <div class="card-body">
-                                    <h3 class="profile-name" style="padding-left:20px">{{$viewid->Name}}</h3>
+                                    <h3 class="profile-name" style="padding-left:20px">{{$viewid->Name}} &nbsp;
+                                        @if($verifiedbadge->count() == 0)
+
+                                            @else
+                                            <i class="bi bi-shield-fill-check" style="color:green"></i><span style="font-size:15px;color:green">&nbsp;Verified by varan<span>
+                                        @endif
+
+
+                                        </h3>
                                     <h5 class="profile-id" style="padding-left:20px">{{$viewid->varan_id}}</h5>
                                     <div class="basicdetails">
                                         <div class="container">
@@ -151,7 +159,7 @@
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatbox" style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Message</button>
                                     @endif
                                     @else
-                                    <button class="btn btn-primary"  style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Upgrade Premium chat with {{$viewid->Name}}</button>
+                                    <a href="/package" class="btn btn-primary"  style="background-color:#6d1140;border:0px;padding-top:15px;padding-bottom:15px;padding-left:25px;border-radius:0px 0px 20px 20px">Upgrade Premium chat with {{$viewid->Name}}</a>
                                 @endif
 
 
@@ -205,20 +213,29 @@
 
                                     </div>
                                     <div class="col-lg-4">
-                                        <button class="btn btn-primary w-100 biobtn">Report</button>
+                                        @if($report == 0)
+                                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary w-100 biobtn"><img src="../assets/images/send.png" class="img-fluid" style="width:30px"><span>
+                                                Report
+                                            </span></button>
+                                            @else
+                                            <button class="btn btn-primary w-100 biobtn"><img src="../assets/images/send.png" class="img-fluid" style="width:30px"><span>
+                                                Already Report
+                                            </span></button>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                        <div class="row">
+                        <div class="row mobileresponsive">
                             <div class="col-lg-3">
                                 <div class="sticky-top">
-                                <img src="../assets/images/mobil_app.png" class="img-fluid">
-                                <a href=""><img src="../assets/images/android.png" class="img-fluid mt-4"></a>
-                                <a href=""><img src="../assets/images/ios.png" class="img-fluid mt-4"></a>
-                                <img src="../assets/images/download.png" class="img-fluid mt-4">
+                                <img src="../assets/images/mobil_app.png" class="img-fluid m-auto d-block">
+                                <a href=""><img src="../assets/images/android.png" class="img-fluid" style="margin:40px auto;display:block"></a>
+                                <a href=""><img src="../assets/images/ios.png" class="img-fluid" style="margin:40px auto;display:block"></a>
+                                <img src="../assets/images/download.png" class="img-fluid" style="margin:40px auto;display:block">
                             </div>
                             </div>
                             <div class="col-lg-9" >
@@ -255,31 +272,32 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Body Type</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Body Type</th>
                                                             @if($viewid->bioview == '0')
-                                                                <td>@if($viewid->btype == "")
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->btype == "")
                                                                     -
                                                                     @else
                                                                     {{$viewid->btype}}
                                                                 @endif</td>
                                                             @else
-                                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXX</span></td>
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXX</span></td>
                                                             @endif
 
-                                                            <th>Physical Status</th>
-                                                            <td> @if($viewid->phy_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Physical Status</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->phy_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->phy_name}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Date Of Birth</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Date Of Birth</th>
                                                             @if($viewid->bioview == '0')
-                                                                <td>@if($viewid->dob == "")
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->dob == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->dob}}
@@ -288,46 +306,46 @@
                                                                 <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
                                                             @endif
 
-                                                            <th>Age</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Age</th>
                                                             @if($viewid->bioview == '0')
-                                                                <td> {{$viewid->age}}</td>
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> {{$viewid->age}}</td>
                                                             @else
-                                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX</span></td>
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX</span></td>
                                                             @endif
 
                                                         </tr>
                                                         <tr>
-                                                            <th>Height</th>
-                                                            <td> @if($viewid->height_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Height</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->height_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->height_name}}
                                                             @endif</td>
-                                                            <th>Complexion</th>
-                                                            <td>  @if($viewid->com_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Complexion</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->com_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->com_name}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Matrital Status</th>
-                                                            <td>  @if($viewid->matrial_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Matrital Status</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->matrial_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->matrial_name}}
                                                             @endif</td>
-                                                            <th>No Of Children</th>
-                                                            <td>  @if($viewid->no_of_children == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">No Of Children</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->no_of_children == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->no_of_children}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Gender</th>
-                                                            <td> {{$viewid->Gender}}</td>
-                                                            <th>Mobile Number</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Gender</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> {{$viewid->Gender}}</td>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Mobile Number</th>
 
                                                             @if($noofphoneno)
                                                                 @if($noofphoneno == $viewedphoneno)
@@ -353,19 +371,7 @@
                                                                         @if($viewid->mobile_no == "")
                                                                         -
                                                                         @else
-                                                                            <form method="POST" action="/updatenumuserpackage">
-                                                                                @csrf
-                                                                                <input type="hidden" name="partnerid" value="{{$viewid->varan_id}}">
-
-                                                                                @if ($privactphoto == 1)
-                                                                                    {{$viewid->mobile_no}}
-                                                                                    @else
-                                                                                    <button type="submit" class="btn btn-primary">View</button>
-                                                                                @endif
-
-
-
-                                                                            </form>
+                                                                        {{$viewid->mobile_no}}
 
 
                                                                         @endif
@@ -377,8 +383,6 @@
                                                                                 <input type="hidden" name="partnerid" value="{{$viewid->varan_id}}">
                                                                                 <button type="submit" class="btn btn-primary">Request Button</button>
                                                                             </form>
-
-
                                                                         </td>
 
                                                                         @endif
@@ -391,9 +395,9 @@
 
                                                         </tr>
                                                         <tr>
-                                                            <th>E-mail ID</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">E-mail ID</th>
                                                             @if($viewid->contactview == '0')
-                                                            <td>  @if($viewid->email_id == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->email_id == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->email_id	}}
@@ -407,6 +411,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -416,43 +421,44 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Religion</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Religion</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td>@if($viewid->religion_name == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->religion_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->religion_name}}
                                                             @endif</td>
-                                                @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
-                                                @endif
+                                                    @else
+                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                    @endif
 
-                                                            <th>Caste</th>
-                                                            @if($viewid->bioview == '0')
-                                                            <td>  @if($viewid->Caste_name == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->Caste_name}}
-                                                            @endif</td>
-                                                @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
-                                                @endif
+                                                                <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Caste</th>
+                                                                @if($viewid->bioview == '0')
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->Caste_name == "")
+                                                                    -
+                                                                    @else
+                                                                    {{$viewid->Caste_name}}
+                                                                @endif</td>
+                                                    @else
+                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                    @endif
 
                                                         </tr>
                                                         <tr>
-                                                            <th>Sub Caste</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Sub Caste</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->subcategory_name == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->subcategory_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->subcategory_name}}
                                                             @endif</td>
-                                                @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
-                                                @endif
+                                                    @else
+                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                    @endif
 
 
                                                         </tr>
@@ -462,6 +468,7 @@
 
                                                     </tbody>
                                                 </table>
+                                            </div>
                                             </div>
 
 
@@ -475,68 +482,70 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <table class="table table-borderless mt-3">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>Address</th>
-                                                            @if($viewid->contactview == '0')
-                                                            <td>@if($viewid->com_address == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->com_address}}
-                                                            @endif</td>
-                                                                @else
-                                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">Address</span></td>
-                                                            @endif
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless mt-3">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Address</th>
+                                                                @if($viewid->contactview == '0')
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->com_address == "")
+                                                                    -
+                                                                    @else
+                                                                    {{$viewid->com_address}}
+                                                                @endif</td>
+                                                                    @else
+                                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">Address</span></td>
+                                                                @endif
 
-                                                            <th>Country</th>
-                                                            @if($viewid->contactview == '0')
-                                                            <td>@if($viewid->country_name == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->country_name}}
-                                                            @endif</td>
-                                                                @else
-                                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">Country</span></td>
-                                                            @endif
+                                                                <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Country</th>
+                                                                @if($viewid->contactview == '0')
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->country_name == "")
+                                                                    -
+                                                                    @else
+                                                                    {{$viewid->country_name}}
+                                                                @endif</td>
+                                                                    @else
+                                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">Country</span></td>
+                                                                @endif
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>State</th>
-                                                            @if($viewid->contactview == '0')
-                                                            <td>@if($viewid->state_name == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->state_name}}
-                                                            @endif</td>
-                                                                @else
-                                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">State</span></td>
-                                                            @endif
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">State</th>
+                                                                @if($viewid->contactview == '0')
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->state_name == "")
+                                                                    -
+                                                                    @else
+                                                                    {{$viewid->state_name}}
+                                                                @endif</td>
+                                                                    @else
+                                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">State</span></td>
+                                                                @endif
 
-                                                            <th>District</th>
-                                                            @if($viewid->contactview == '0')
-                                                            <td>  @if($viewid->city_name == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->city_name}}
-                                                            @endif</td>
-                                                                @else
-                                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">City Name</span></td>
-                                                            @endif
+                                                                <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">District</th>
+                                                                @if($viewid->contactview == '0')
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->city_name == "")
+                                                                    -
+                                                                    @else
+                                                                    {{$viewid->city_name}}
+                                                                @endif</td>
+                                                                    @else
+                                                                    <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">City Name</span></td>
+                                                                @endif
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Municipality/Panchayat</th>
-                                                            <td> @if($viewid->municipality_panchayat == "")
-                                                                -
-                                                                @else
-                                                                {{$viewid->municipality_panchayat}}
-                                                            @endif</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Municipality/Panchayat</th>
+                                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->municipality_panchayat == "")
+                                                                    -
+                                                                    @else
+                                                                    {{$viewid->municipality_panchayat}}
+                                                                @endif</td>
 
-                                                        </tr>
+                                                            </tr>
 
-                                                    </tbody>
-                                                </table>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -548,93 +557,94 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Education</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Education</th>
 
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->eduname == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->eduname == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->eduname}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
 
-                                                            <th>Education Detail</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Education Detail</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td>  @if($viewid->edudetails== "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->edudetails== "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->edudetails}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
                                                         </tr>
                                                         <tr>
-                                                            <th>Job Category</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Category</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td>@if($viewid->name == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->name}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
-                                                            <th>Job in detail</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job in detail</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->job_detail == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->job_detail == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->job_detail}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
                                                         </tr>
                                                         <tr>
-                                                            <th>Job Location (Country)</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Location (Country)</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->jobcountry == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->jobcountry == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->jobcountry}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
 
-                                                            <th>Job Location (State)</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Location (State)</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->jobstate == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->jobstate == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->jobstate}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
                                                         </tr>
                                                         <tr>
-                                                            <th>Job Location (District)</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Location (District)</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->jobcity == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->jobcity == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->jobcity}}
                                                             @endif</td>
                                                 @else
-                                                <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
+                                                <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XXXXXXX</span></td>
                                                 @endif
 
 
@@ -643,6 +653,7 @@
 
                                                     </tbody>
                                                 </table>
+                                            </div>
                                             </div>
 
                                         </div>
@@ -653,17 +664,18 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <td>  @if($viewid->father_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Name</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->father_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->father_name}}
                                                             @endif</td>
-                                                            <th>Job Details</th>
-                                                            <td>  @if($viewid->father_occuption == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Details</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->father_occuption == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->father_occuption}}
@@ -674,6 +686,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -683,17 +696,18 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <td>  @if($viewid->mother_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Name</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->mother_name == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->mother_name}}
                                                             @endif</td>
-                                                            <th>Job Details</th>
-                                                            <td>  @if($viewid->mother_occuption == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Details</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->mother_occuption == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->mother_occuption}}
@@ -703,6 +717,7 @@
 
                                                     </tbody>
                                                 </table>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -713,39 +728,40 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>No Of Siblings</th>
-                                                            <td>@if($viewid->total_sibblings == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">No Of Siblings</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->total_sibblings == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->total_sibblings}}
                                                             @endif</td>
-                                                            <th>No Of Elder Sister</th>
-                                                            <td>@if($viewid->elder_sister == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">No Of Elder Sister</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->elder_sister == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->elder_sister}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>No Of Elder Brother</th>
-                                                            <td> @if($viewid->elder_brother == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">No Of Elder Brother</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->elder_brother == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->elder_brother}}
                                                             @endif</td>
-                                                            <th>No Of Younger Sister</th>
-                                                            <td>@if($viewid->younger_sister == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">No Of Younger Sister</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->younger_sister == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->younger_sister}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>No Of Younger Brother</th>
-                                                            <td>@if($viewid->younger_brother == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">No Of Younger Brother</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->younger_brother == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->younger_brother}}
@@ -756,6 +772,8 @@
 
                                                     </tbody>
                                                 </table>
+
+                                            </div>
                                             </div>
 
                                         </div>
@@ -766,101 +784,102 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Partner Age</th>
-                                                            <td> @if($partners->age_from == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Partner Age</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($partners->age_from == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->age_from}}
                                                             @endif</td>
-                                                            <th>Partner Height</th>
-                                                            <td> @if($partners->preference_height == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Partner Height</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($partners->preference_height == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->preference_height}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Body Type</th>
-                                                            <td> @if($partners->btype == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Body Type</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($partners->btype == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->btype}}
                                                             @endif</td>
-                                                            <th>Complexion</th>
-                                                            <td>  @if($partners->com_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Complexion</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($partners->com_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->com_name}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Marital Status</th>
-                                                            <td>  @if($partners->matrial_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Marital Status</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($partners->matrial_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->matrial_name}}
                                                             @endif</td>
-                                                            <th>Education Category</th>
-                                                            <td>   @if($partners->eduname == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Education Category</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">   @if($partners->eduname == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->eduname}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Education Details</th>
-                                                            <td>  @if($partners->preference_edudetails == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Education Details</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($partners->preference_edudetails == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->preference_edudetails}}
                                                             @endif</td>
-                                                            <th>Job Category</th>
-                                                            <td>  @if($partners->name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Job Category</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($partners->name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->name}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Religion</th>
-                                                            <td> @if($partners->religion_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Religion</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($partners->religion_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->religion_name}}
                                                             @endif</td>
-                                                            <th>Caste</th>
-                                                            <td>   @if($partners->Caste_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Caste</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">   @if($partners->Caste_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->Caste_name}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Sub Caste</th>
-                                                            <td>  @if($partners->subcategory_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Sub Caste</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($partners->subcategory_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->subcategory_name}}
                                                             @endif</td>
-                                                            <th>State</th>
-                                                            <td>   @if($partners->state_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">State</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">   @if($partners->state_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->state_name}}
                                                             @endif</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Country</th>
-                                                            <td> @if($partners->country_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Country</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($partners->country_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->country_name}}
                                                             @endif</td>
-                                                            <th>District</th>
-                                                            <td>  @if($partners->city_name == "")
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">District</th>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($partners->city_name == "")
                                                                 -
                                                                 @else
                                                                 {{$partners->city_name}}
@@ -869,6 +888,7 @@
 
                                                     </tbody>
                                                 </table>
+                                            </div>
                                             </div>
 
                                         </div>
@@ -879,42 +899,43 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-12">
+                                                <div class="table-responsive">
                                                 <table class="table table-borderless mt-3">
                                                     <tbody>
                                                         <tr>
-                                                            <th>Zodiac</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Zodiac</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td>  @if($viewid->rasi == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">  @if($viewid->rasi == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->rasi}}
                                                             @endif</td>
                                                         @else
-                                                            <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
                                                         @endif
 
-                                                            <th>Laknam</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Laknam</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td>@if($viewid->laknam == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">@if($viewid->laknam == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->laknam}}
                                                             @endif</td>
                                                         @else
-                                                            <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
                                                         @endif
 
                                                         </tr>
                                                         <tr>
-                                                            <th>Stars</th>
+                                                            <th style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;">Stars</th>
                                                             @if($viewid->bioview == '0')
-                                                            <td> @if($viewid->star == "")
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"> @if($viewid->star == "")
                                                                 -
                                                                 @else
                                                                 {{$viewid->star}}
                                                             @endif</td>
                                                         @else
-                                                            <td><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
+                                                            <td style="vertical-align:middle;word-wrap: break-word;min-width: 160px;max-width: 160px;"><span style="color: transparent;text-shadow: 0 0 5px rgba(0,0,0,0.3);font-size:17px;margin-left:0px">XX-XX-XXXX</span></td>
                                                         @endif
 
                                                         </tr>
@@ -924,6 +945,7 @@
 
                                                     </tbody>
                                                 </table>
+                                            </div>
                                                 <h5 style="font-weight:bold;margin-left:20px;">Horoscope Image</h5>
                                                 @if($enablehoro)
                                                     @if($enablehoro->enable_horoschope == 'Yes')
@@ -1006,6 +1028,30 @@
                         <p id="success-message"></p>
                       </div>
                 </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Report Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/addReport">
+                    @csrf
+                    <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
+                    <input type="hidden" name="partnervaranid" value="{{$viewid->varan_id}}">
+                    <textarea class="form-control" name="reason" placeholder="Enter Report Reason" required></textarea>
+                    <button class="btn btn-primary w-100 biobtn"><span>
+
+                        Send Report
+                    </span></button>
+                </form>
             </div>
 
           </div>

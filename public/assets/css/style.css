@@ -1124,5 +1124,29 @@ margin-top:-70px;
     {
         width:20px !important;
     }
+    .price-description ul li
+    {
+        font-size:14px !important;
+    }
+    .bg-overlay
+    {
+        margin-top:71px !important;
+    }
+    .loginotp
+    {
+        display:none !important;
+    }
+    .mobileresponsive
+    {
+        flex-direction: column-reverse !important;
+    }
+    .detailssection th
+    {
+        font-size:14px !important;
+    }
+    .detailssection td
+    {
+        font-size:14px !important;
+    }
 
 }

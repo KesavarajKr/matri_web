@@ -156,4 +156,132 @@ class LoginController extends Controller
             return redirect('/login');
         }
     }
+
+    public function loginotp(Request $request)
+    {
+        $mobileno = $request->mblnum;
+
+        $mblcheck = DB::table('registers')
+        ->select('*')
+        ->where('mobile_no','=',$mobileno)
+        ->get();
+        // dd($mblcheck->count());
+
+        if($mblcheck->count() == 0)
+        {
+            return redirect('/login-otp')->with('success','Mobile Number Not Valid Please check your mobile number');
+        }
+        else
+        {
+
+            $code=rand(1000,10000);
+            $phone = $mobileno;
+
+         //   require_once('sendsms/sendsms.php');
+         $token="87c13d427e12b47a9f6535878483d96a";
+         $credit="2";
+         $sender="STSCBE";
+         $mobile_number=$phone;
+
+         //Enter your text message
+         $message="OTP for your Sai Techno Solutions Login Verification is $code. Do Not Share this with anyone. - Sai
+     Techno Solutions";
+
+     $url="http://sms.saitechnosolutions.net/sendsms/?token=87c13d427e12b47a9f6535878483d96a&credit=3&sender=".urlencode($sender)."&message=".urlencode($message)."&number=".urlencode($mobile_number)."&templateid=1707164931307644321";
+
+
+
+
+              $ch = curl_init();
+              curl_setopt($ch, CURLOPT_POST, true);
+              curl_setopt($ch, CURLOPT_URL, $url);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch,CURLOPT_HEADER,false);
+              $response = curl_exec($ch);
+              $err = curl_error($ch);
+              curl_close($ch);
+
+//Enter your receiver mobile number
+$mobile_number=$mobileno;
+
+date_default_timezone_set("Asia/Kolkata");
+       $datetime = date('Y-m-d h:i:s');
+       $datetime = date('Y-m-d H:i:s',strtotime('+30 second',strtotime($datetime)));
+
+DB::table('otp_db')->insert(
+   array(
+          'otp'     =>   $code,
+          'mobile_no'   =>   $mobileno,
+          'date_time'   =>   $datetime
+   )
+);
+            return view('pages.login_otp_page',["mobilenum"=>$mobileno]);
+
+        }
+    }
+
+    public function logotpcheck(Request $request)
+    {
+        $mblnum = $request->mobilenum;
+        $otp1 = $request-> otp1;
+        $otp2 = $request-> otp2;
+        $otp3 = $request-> otp3;
+        $otp4 = $request-> otp4;
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+
+        $otp = $otp1.$otp2.$otp3.$otp4;
+
+        $otpcheck = DB::table('otp_db')
+        ->select('otp')
+        ->where('otp', '=', $otp)
+        ->where('mobile_no','=',$mblnum)
+        ->where('date_time','>=',$datetime)
+        ->get()->count();
+
+        if($otpcheck == 1)
+        {
+            $user = DB::table('registers')
+            ->select('*')
+            ->where('mobile_no','=',$mblnum)
+            ->first();
+            // dd($user);
+            // $user = register::where('mobile_no',$mblnum)->first();
+            // Auth::login($user);
+            // return redirect('aboutme');
+
+            if($user)
+            {
+
+
+                $usercheck = DB::table('registers')
+                ->select('*')
+                ->where('mobile_no','=',$mblnum)
+                ->get();
+                // dd($usercheck);
+                if($usercheck->count() == 1)
+                {
+                    $request->session()->put('LoggedUser',$user->varan_id);
+
+                    $ip = $request->ip();
+                    $varanid=$user->varan_id;
+
+                    $updatedata= DB::table('logdetails_tb')->insert(
+                        ['user_id' => $varanid, 'user_ip' => $ip]);
+                    return redirect('aboutme');
+                    // return "Approved";
+
+                }
+                else
+                {
+                    // return "Not Approved";
+                    return back()->with('error','Your Details reviewed please wait while approvad');
+                }
+        }
+        else
+        {
+            return "Update Failed";
+        }
+    }
+    }
 }

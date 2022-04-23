@@ -50,6 +50,11 @@
                                             </div>
                                             <div class="col-lg-8">
                                                 <h3 class="profile-name">{{$profiles->Name}}<sub>{{$profiles->varan_id}}</sub></h3>
+                                                @if($profiles->member_shiptype == 1)
+                                                            <button class="btn btnpremium btn-sm" style="font-size:12px;color:#000;font-weight:bold;border:0px;border-radius:50px;background-image: linear-gradient(to right, #E2C887 0%, #E2C887 41%, #B98E44 100%) !important;"><i class="bi bi-patch-check-fill"></i>&nbsp;&nbsp;Premium</button>
+                                                        @else
+
+                                                    @endif
                                                 <table class="table table-bordered mt-4">
                                                     <tr>
                                                         <th class="profilematches"><img src="assets/images/Vector.png" class="img-fluid" style="width:30px"><span class="">{{$profiles->age}} Years</span></th>

@@ -256,6 +256,7 @@ class PreferenceController extends Controller
         $heightfrom = $request->heightfrom;
         $heightto = $request->heightto;
         $bodytype = $request->bodytype;
+        // dd($bodytype);
         $complexion = $request->complexion;
         $maritalstatus = $request->maritalstatus;
         $educationcat = $request->educationcat;

@@ -50,6 +50,11 @@
                                             </div>
                                             <div class="col-lg-8">
                                                 <h3 class="profile-name">{{$profiles->Name}}<sub>{{$profiles->varan_id}}</sub></h3>
+                                                @if($profiles->member_shiptype == 1)
+                                                            <button class="btn btnpremium btn-sm" style="font-size:12px;color:#000;font-weight:bold;border:0px;border-radius:50px;background-image: linear-gradient(to right, #E2C887 0%, #E2C887 41%, #B98E44 100%) !important;"><i class="bi bi-patch-check-fill"></i>&nbsp;&nbsp;Premium</button>
+                                                        @else
+
+                                                    @endif
                                                 <table class="table table-bordered mt-4">
                                                     <tr>
                                                         <th class="profilematches"><img src="assets/images/Vector.png" class="img-fluid" style="width:30px"><span class="">{{$profiles->age}} Years</span></th>
@@ -95,7 +100,7 @@
                                     <div class="cardbottom">
                                         <div class="container-fluid">
                                             <div class="row">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-6">
 
                                                     @if($profiles->fav == 0)
 
@@ -104,7 +109,7 @@
                                                         <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
                                                         <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
                                                         <input type="hidden" name="status" value="liked">
-                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
+                                                        <button type="submit" class="btn btn-default m-auto d-block"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
                                                     </form>
                                                     @else
 
@@ -113,17 +118,17 @@
                                                         <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
                                                         <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
                                                         <input type="hidden" name="status" value="liked">
-                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
+                                                        <button type="submit" class="btn btn-default m-auto d-block"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
                                                     </form>
                                                 @endif
 
                                                 </div>
-                                                <div class="col-lg-4">
-                                                    <a href="{{route('bio.show',$profiles->id)}}" class="btn btn-default"><img src="assets/images/viewprofile.png" style="width:30px" class="img-fluid"><span>View Profile</span></a>
+                                                <div class="col-lg-6">
+                                                    <a href="{{route('bio.show',$profiles->id)}}" class="btn btn-default m-auto d-block"><img src="assets/images/viewprofile.png" style="width:30px" class="img-fluid"><span>View Profile</span></a>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                {{-- <div class="col-lg-4">
                                                     <button class="btn btn-default"><img src="assets/images/ignore.png" style="width:30px" class="img-fluid"><span>Ignore</span></button>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>

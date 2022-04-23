@@ -40,8 +40,9 @@
                                 </div>
                             </form>
                                 <div class="text-center">
-                                    <a href="/forgott" style="color:#fff;text-decoration:none">Forgott Password</a><br>
-                            <a href="/" style="color:#fff;text-decoration:none">Create New User</a>
+                                    <a href="/forgott" style="color:#fff;text-decoration:none">Forgott Password</a> <span style="color:#fff">|</span>
+                            <a href="/" style="color:#fff;text-decoration:none">Create New User</a> <span style="color:#fff">|</span>
+                            <a href="/login-otp" style="color:#fff;text-decoration:none">Login with OTP</a>
                                 </div>
                             </div>
                         </div>

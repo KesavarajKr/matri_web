@@ -5,6 +5,8 @@ use App\Http\Controllers\basicdetailsController;
 use App\Http\Controllers\bioController;
 use App\Http\Controllers\cashfreeController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ContactviewController;
+use App\Http\Controllers\DailysuggestionController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\favouriteController;
 use App\Http\Controllers\HomepageController;
@@ -54,6 +56,7 @@ Route::view('forgott','pages.forgott');
 Route::view('forgott_otp','pages.forgott_otp');
 Route::view('myprofile','pages.myprofile');
 Route::view('privacy-policy','pages.privacypolicy');
+Route::view('login-otp','pages.loginotp');
 
 Route::Post('login',[LoginController::class,'authenticate']);
 Route::post('postData',[registerController::class,'passData']);
@@ -65,6 +68,8 @@ Route::get('getbasicdetails',[registerController::class,'getbasicdetails']);
 Route::resource('register',registerController::class);
 Route::resource('basicdetails',basicdetailsController::class)->middleware('shareAuth','percentage');
 Route::get('logout',[LoginController::class,'logout']);
+Route::post('loginotp',[LoginController::class,'loginotp']);
+Route::post('logotpcheck',[LoginController::class,'logotpcheck']);
 
 
 
@@ -82,6 +87,8 @@ Route::post('uploadhoroscope',[ImageController::class,'uploadhoroscope']);
 Route::post('forgottcheck',[registerController::class,'forgottcheck']);
 Route::post('forgottotpcheck',[registerController::class,'forgottotpcheck']);
 Route::post('updatepassword',[registerController::class,'updatepassword']);
+
+Route::post('addReport',[bioController::class,'addReport']);
 
 
 
@@ -138,6 +145,8 @@ Route::get('starmatches',[MatchesController::class,'starmatches'])->middleware('
 
 Route::get('educationmatches',[MatchesController::class,'educationmatches'])->middleware('shareAuth');
 
+
+
 Route::get('whoviewprofiles',[MatchesController::class,'whoviewprofiles'])->middleware('shareAuth');
 
 Route::get('myviewedhistory',[MatchesController::class,'myviewedhistory'])->middleware('shareAuth');
@@ -165,8 +174,11 @@ Route::view('paymentresponse','pages.paymentresponse');
 
 Route::resource('redirect_url',cashfreeController::class)->middleware('shareAuth');
 
+Route::resource('mailbox_contact',ContactviewController::class)->middleware('shareAuth');
+
 Route::resource('chat',ChatController::class)->middleware('shareAuth');
 
+Route::resource('dailymatches',DailysuggestionController::class)->middleware('shareAuth');
 
 Route::post('redirectpage',[cashfreeController::class,'redirectpage'])->middleware('shareAuth');
 
@@ -189,4 +201,7 @@ Route::post('getchat/{partnerid}/{sessionid}',[ChatController::class,'getchat'])
 
 Route::post('updatenumuserpackage',[bioController::class,'updatenumuserpackage'])->middleware('shareAuth');
 Route::post('insertrequest',[bioController::class,'insertrequest'])->middleware('shareAuth');
+
+Route::post('acceptcontactview',[settingsController::class,'acceptcontactview'])->middleware('shareAuth');
+Route::post('rejectcontactview',[settingsController::class,'rejectcontactview'])->middleware('shareAuth');
 

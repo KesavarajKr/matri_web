@@ -12,7 +12,7 @@
             <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-globe"></i>&nbsp;&nbsp;English</a>
           </li> --}}
           <li class="nav-item">
-            <a class="nav-link" href="#"><i style="color:#fff" class="bi bi-globe"></i>&nbsp;&nbsp;Premium</a>
+            <a class="nav-link" href="/package"><i style="color:#fff" class="bi bi-globe"></i>&nbsp;&nbsp;Premium</a>
           </li>
           @if(session('LoggedUser') == "")
             @else

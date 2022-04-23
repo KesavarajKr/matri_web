@@ -46,11 +46,16 @@
                                                 <input type="hidden" class="form-control" name="enable_horoschope" value="{{$pack->specification_4}}"/>
                                                 <input type="hidden" class="form-control" name="validity_date" value="{{$pack->validity}}"/>
                                                 <input type="hidden" class="form-control" name="customerName" placeholder="Enter your name here (Ex. John Doe)" value="{{session('LoggedUser')}}"/>
-                                                <input type="hidden" class="form-control" name="customerEmail" placeholder="Enter your email address here (Ex. Johndoe@test.com)" value="{{$userdetails->email_id}}"/>
-                                                <input type="hidden" class="form-control" name="customerPhone" placeholder="Enter your phone number here (Ex. 9999999999)" value="{{$userdetails->mobile_no}}"/>
+                                                <input type="hidden" class="form-control" name="customerEmail" placeholder="Enter your email address here (Ex. Johndoe@test.com)" value="@if($userdetails){{$userdetails->email_id}}@else @endif"/>
+                                                <input type="hidden" class="form-control" name="customerPhone" placeholder="Enter your phone number here (Ex. 9999999999)" value="@if($userdetails){{$userdetails->mobile_no}}@else @endif"/>
                                                 <input type="hidden" class="form-control" name="notifyUrl" placeholder="" value="http://127.0.0.1:8000/paymentresponse"/>
                                                 <input type="hidden" class="form-control" name="returnUrl" placeholder="Enter the URL to which customer will be redirected (Ex. www.example.com)" value="http://127.0.0.1:8000/redirectpage"/>
-                                                <button class="btn btn-default mt-3" style="width:200px;color:#fff;font-weight:bold;border:0px;border-radius:50px;background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;" value="Pay">Buy Now</button>
+                                                @if (session('LoggedUser') == '')
+                                                    <a href="/login" class="btn btn-default mt-3" style="width:200px;color:#fff;font-weight:bold;border:0px;border-radius:50px;background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;">Buy Now</a>
+                                                    @else
+                                                    <button class="btn btn-default mt-3" style="width:200px;color:#fff;font-weight:bold;border:0px;border-radius:50px;background-image: linear-gradient(to right, #E27B21 0%, #E27B21 41%, #DB3470 100%) !important;" value="Pay">Buy Now</button>
+                                                @endif
+
                                             </form>
                                         </div>
                                         <div class="price-description">

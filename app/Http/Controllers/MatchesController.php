@@ -102,7 +102,7 @@ class MatchesController extends Controller
     }
 
 $query=DB::table('registers')
-->select('registers.id','registers.Name', 'registers.age', 'registers.varan_id','regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','subcastes.subcategory_name', 'jobdescription_tb.name','images.image_name',DB::raw('(CASE
+->select('registers.id','registers.Name', 'registers.age', 'registers.varan_id','registers.member_shiptype','regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','subcastes.subcategory_name', 'jobdescription_tb.name','images.image_name',DB::raw('(CASE
 
                         WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -241,7 +241,7 @@ $premium = $query->inRandomOrder()->get();
         //                     END) AS image_name')
 
     $query=DB::table('registers')
-    ->select('registers.id','registers.Name', 'registers.age','regli_tb.religion_name', 'registers.varan_id', 'eductiondetails_tb.name as eduname','states.state_name','subcastes.subcategory_name','images.image_name',DB::raw('(CASE
+    ->select('registers.id','registers.Name','registers.member_shiptype', 'registers.age','regli_tb.religion_name', 'registers.varan_id', 'eductiondetails_tb.name as eduname','states.state_name','subcastes.subcategory_name','images.image_name',DB::raw('(CASE
 
                             WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -385,7 +385,7 @@ $premium = $query->inRandomOrder()->get();
     }
 
 $query=DB::table('registers')
-->select('registers.id','registers.Name', 'registers.age', 'registers.varan_id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+->select('registers.id','registers.Name', 'registers.member_shiptype','registers.age', 'registers.varan_id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                         WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -514,7 +514,7 @@ if($hfrom!="" && $hto!=""){
     }
 
 $query=DB::table('registers')
-->select('registers.Name', 'registers.age','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+->select('registers.Name', 'registers.age','registers.member_shiptype','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                         WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -573,7 +573,7 @@ $query=DB::table('registers')
         }
 
     $query=DB::table('registers')
-    ->select('registers.Name', 'registers.age', 'registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+    ->select('registers.Name', 'registers.age','registers.member_shiptype', 'registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                             WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -631,7 +631,7 @@ $query=DB::table('registers')
 
         }
     $query=DB::table('registers')
-    ->select('registers.Name', 'registers.age','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+    ->select('registers.Name', 'registers.age','registers.member_shiptype','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                             WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -691,7 +691,7 @@ $query=DB::table('registers')
         }
 
     $query=DB::table('registers')
-    ->select('registers.Name', 'registers.age', 'registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+    ->select('registers.Name', 'registers.age', 'registers.member_shiptype','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name','registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                             WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -748,7 +748,7 @@ $query=DB::table('registers')
       }
 
   $query=DB::table('registers')
-  ->select('registers.Name', 'registers.age','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+  ->select('registers.Name', 'registers.age','registers.member_shiptype','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                           WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -809,7 +809,7 @@ $query=DB::table('registers')
     }
 
 $query=DB::table('registers')
-->select('registers.Name', 'registers.age','registers.id', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
+->select('registers.Name', 'registers.age','registers.id','registers.member_shiptype', 'regli_tb.religion_name','eductiondetails_tb.name as eduname','states.state_name', 'registers.varan_id', 'subcastes.subcategory_name', 'jobdescription_tb.name', 'images.image_name',DB::raw('(CASE
 
                         WHEN favourites.liked_varan_id = registers.varan_id THEN 1
 
@@ -847,5 +847,7 @@ $myviewedhistory = $query->distinct()->get();
 
 return view('pages.myviewedhistory',compact('myviewedhistory'));
             }
+
+        // For New Macths
 
 }

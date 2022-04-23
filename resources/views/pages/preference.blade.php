@@ -103,7 +103,7 @@
                                             <div class="col-lg-4 mt-3">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Body Type</label>
-                                                    <select class="form-control form-design-3 bodytype select2" name="bodytype">
+                                                    <select class="form-control form-design-3 bodytype select2" name="bodytype[]" multiple>
                                                         <option value="">-- Choose Body Type --</option>
                                                         @if($btype_tb)
                                                         @foreach ($btype_tb as $body)
@@ -118,7 +118,7 @@
                                             <div class="col-lg-4 mt-3">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Complexion</label>
-                                                    <select class="form-control form-design-3  select2" name="complexion">
+                                                    <select class="form-control form-design-3  select2" name="complexion[]" multiple>
                                                         <option value="">-- Choose Complexion --</option>
                                                         @if($complexion1)
                                                         @foreach ($complexion1 as $complexiondetails)
@@ -133,7 +133,7 @@
                                             <div class="col-lg-4 mt-3">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Marital Status</label>
-                                                    <select class="form-control form-design-3  select2" name="maritalstatus">
+                                                    <select class="form-control form-design-3  select2" name="maritalstatus[]" multiple>
                                                         <option value="">-- Choose Marital Status --</option>
                                                         @if($matrial_tb)
                                                         @foreach ($matrial_tb as $marriage)
@@ -158,7 +158,7 @@
 
                                                     <div class="form-group">
                                                         <label style="color:#000;font-weight:bold;margin-bottom:10px">Education Category</label>
-                                                        <select class="form-control form-design-3 bodytype select2" name="educationcat">
+                                                        <select class="form-control form-design-3 bodytype select2" name="educationcat[]" multiple>
                                                             <option value="">-- Choose Education --</option>
                                                             @if($education)
                                                             @foreach ($education as $edu)
@@ -184,7 +184,7 @@
                                         <div class="col-lg-6 mt-3">
                                             <div class="form-group">
                                                 <label style="color:#000;font-weight:bold;margin-bottom:10px">Job Category</label>
-                                                <select class="form-control form-design-3 bodytype select2" name="jobcategory">
+                                                <select class="form-control form-design-3 bodytype select2" name="jobcategory[]" multiple>
                                                     <option value="">-- Choose Job Category --</option>
                                                     @if($job)
                                                     @foreach ($job as $jobs)
@@ -217,7 +217,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Religion</label>
-                                                    <select class="form-control form-design-3 bodytype select2" name="religion">
+                                                    <select class="form-control form-design-3 bodytype select2" name="religion[]" multiple>
                                                         <option value="">-- Choose Religion --</option>
                                                         @if($regli_tb)
                                                         @foreach ($regli_tb as $religion)
@@ -231,7 +231,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Caste</label>
-                                                    <select class="form-control form-design-3  select2" name="caste">
+                                                    <select class="form-control form-design-3  select2" name="caste[]" multiple>
                                                         <option value="">-- Choose Caste --</option>
                                                         @if($caste)
                                                         @foreach ($caste as $cast)
@@ -246,7 +246,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Sub Caste</label>
-                                                    <select class="form-control form-design-3  select2" name="subcaste">
+                                                    <select class="form-control form-design-3  select2" name="subcaste[]" multiple>
                                                         <option value="">-- Choose Subcaste --</option>
                                                         @if($subcastes)
                                                         @foreach ($subcastes as $subcas)
@@ -269,7 +269,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">Country</label>
-                                                    <select class="form-control form-design-3 bodytype select2" name="country">
+                                                    <select class="form-control form-design-3 bodytype select2" name="country[]" multiple>
                                                         <option value="">-- Choose Country --</option>
                                                         @if($country1)
                                                         @foreach ($country1 as $countrys)
@@ -284,7 +284,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">State</label>
-                                                    <select class="form-control form-design-3 bodytype select2" name="state">
+                                                    <select class="form-control form-design-3 bodytype select2" name="state[]" multiple>
                                                         <option value="">-- Choose State --</option>
                                                         @if($state1)
                                                         @foreach ($state1 as $states)
@@ -299,7 +299,7 @@
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label style="color:#000;font-weight:bold;margin-bottom:10px">District</label>
-                                                    <select class="form-control form-design-3 bodytype select2" name="district">
+                                                    <select class="form-control form-design-3 bodytype select2" name="district[]" multiple>
                                                         <option value="">-- Choose District --</option>
                                                         @if($cities1)
                                                         @foreach ($cities1 as $city)

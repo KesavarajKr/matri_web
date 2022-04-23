@@ -464,15 +464,15 @@ $int = (int)$num;
             ->where('varan_id','=',$varanid)
             ->first();
             $membership = $register->member_shiptype;
-
+            $noofphoneno=0;
+            $viewedphoneno=0;
             if($membership == 0)
             {
 
             }
             else
             {
-                $noofphoneno=0;
-                $viewedphoneno=0;
+
 
             date_default_timezone_set("Asia/Kolkata");
             $datetime = date('Y-m-d h:i:s');
@@ -523,7 +523,46 @@ $int = (int)$num;
             ->where('status', '=', '1')
             ->get()->count();
 
-        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int','chatbox','chatoption','enablehoro','noofphoneno','viewedphoneno','viewed','privactphoto'));
+            $userid = session('LoggedUser');
+        $partnerid = $varanid;
+
+        date_default_timezone_set("Asia/Kolkata");
+      $datetime = date('Y-m-d h:i:s');
+      $viewed = DB::table('vieweds')
+            ->select('uservaran_id')
+            ->where('uservaran_id', '=', $userid)
+            ->where('partner_varan_id', '=', $partnerid)
+            ->where('phn_num_view_status', '=', 0)
+            ->get()->count();
+            // dd($viewed);
+            if($viewed!=0){
+
+        $updatedata= DB::table('vieweds')->where('uservaran_id',$userid)
+        ->where('partner_varan_id',$partnerid)->update(array(
+                                 'phn_num_view_status'=> 1,
+        ));
+        $updateuserpackage= DB::table('user_package')->where('user_varan_id',$userid)
+        ->where('validity_date', '>=', $datetime)
+        ->where('status','=','0')
+        ->update(array(
+                                 'no_of_phno_viewed'=>DB::raw('no_of_phno_viewed+1'),
+        ));
+
+        }
+
+       $verifiedbadge = DB::table('horoscopes')
+        ->select('*')
+        ->where('varan_id','=',$partnerid)
+        ->where('approval_status','=','1')
+        ->get();
+        // dd($noofphoneno);
+
+        $report = DB::table('reports')
+        ->select('*')
+        ->where('user_varan_id','=',$userid)
+        ->where('report_varan_id','=',$partnerid)
+        ->get()->count();
+        return view('pages.bio',compact('viewid','partners','allinterest','favourite','images','horoscopeimages','horocount','int','chatbox','chatoption','enablehoro','noofphoneno','viewedphoneno','viewed','privactphoto','verifiedbadge','report'));
     }
 
     /**
@@ -643,5 +682,21 @@ $int = (int)$num;
                 }
 
                 return back();
+    }
+
+    public function addReport(Request $request)
+    {
+        $uservaranid = $request->uservaranid;
+        $partnervaranid = $request->partnervaranid;
+        $reason = $request->reason;
+
+        $savedata= DB::table('reports')->insert(
+            [
+                'user_varan_id' => $uservaranid,
+                'report_varan_id' => $partnervaranid,
+                'remarks' => $reason,
+            ]);
+
+            return back();
     }
 }

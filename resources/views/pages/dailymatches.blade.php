@@ -13,10 +13,10 @@
                                     <div class="card-body">
                                         <ul class="matchesbtn">
                                             {{-- {{$varanid}} --}}
-                                            <li class="activematches"><a href="/premiummatches" class=""><img src="assets/images/premiummatches.png" class="img-fluid" style="width:25px"><span class="">Premium Matches</span></a></li>
+                                            <li ><a href="/premiummatches" class=""><img src="assets/images/premiummatches.png" class="img-fluid" style="width:25px"><span class="">Premium Matches</span></a></li>
 <li><a href="/newmatches" class=""><img src="assets/images/newmatches.png" class="img-fluid" style="width:25px"><span class="">New Matches</span></a></li>
 <li><a href="/mutualmatches" class=""><img src="assets/images/mutualmatches.png" class="img-fluid" style="width:25px"><span class="">Mutual Matches</span></a></li>
-<li><a href="" class=""><img src="assets/images/dailysuggesion.png" class="img-fluid" style="width:25px"><span class="">Daily Matches</span></a></li>
+<li class="activematches"><a href="/dailymatches" class=""><img src="assets/images/dailysuggesion.png" class="img-fluid" style="width:25px"><span class="">Daily Matches</span></a></li>
 <li><a href="/locationmatches" class=""><img src="assets/images/locationmatches.png" class="img-fluid" style="width:25px"><span class="">Location Matches</span></a></li>
 <li><a href="/professionalmatches" class=""><img src="assets/images/professionalmatches.png" class="img-fluid" style="width:25px"><span class="">Professional Matches</span></a></li>
 <li><a href="/starmatches" class=""><img src="assets/images/star_matches.png" class="img-fluid" style="width:25px"><span class="">Star Matches</span></a></li>
@@ -31,8 +31,8 @@
                         </div>
 
                         <div class="col-lg-9">
-                            @if($premium)
-                                @foreach ($premium as $profiles)
+                            @if($dailysugestions)
+                                @foreach ($dailysugestions as $profiles)
                                 <div class="matches-container">
                                     <div class="container">
                                         <div class="row">
@@ -111,7 +111,7 @@
                                                         <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
                                                         <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
                                                         <input type="hidden" name="status" value="liked">
-                                                        <button type="submit" class="btn btn-default m-auto d-block"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
+                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Add to Favourite</span></button>
                                                     </form>
                                                     @else
 
@@ -120,13 +120,13 @@
                                                         <input type="hidden" name="uservaranid" value="{{session('LoggedUser')}}">
                                                         <input type="hidden" name="partnervaranid" value="{{$profiles->varan_id}}">
                                                         <input type="hidden" name="status" value="liked">
-                                                        <button type="submit" class="btn btn-default m-auto d-block"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
+                                                        <button type="submit" class="btn btn-default"><img src="assets/images/favourite.png" style="width:30px" class="img-fluid"><span>Already in Favourite</span></button>
                                                     </form>
                                                 @endif
 
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <a href="{{route('bio.show',$profiles->id)}}" class="btn btn-default m-auto d-block"><img src="assets/images/viewprofile.png" style="width:30px" class="img-fluid"><span>View Profile</span></a>
+                                                    <a href="{{route('bio.show',$profiles->id)}}" class="btn btn-default"><img src="assets/images/viewprofile.png" style="width:30px" class="img-fluid"><span>View Profile</span></a>
                                                 </div>
                                                 {{-- <div class="col-lg-4">
                                                     <button class="btn btn-default"><img src="assets/images/ignore.png" style="width:30px" class="img-fluid"><span>Ignore</span></button>

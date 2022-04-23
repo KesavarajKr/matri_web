@@ -5,7 +5,7 @@
         <section class="myprofile-section" style="background-image:url('assets/images/mask_group.png');height:100vh;background-size:cover">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
+                    <div class="col-lg-12 ">
 
 
             <div class="container">
@@ -32,16 +32,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                           </div>
                         @endif
-                        <div class="col-lg-6 ">
+                        <div class="col-lg-4 ">
                             <div class="accountsetting">
                                 <h5 class="text-center text-white mb-4">Account Settings</h5>
                                 <button data-bs-toggle="modal" data-bs-target="#hideprofile" class="btn btn-default accountbtn"><img src="assets/images/hidemyprofile.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Hide My Profile ({{$register->account_setting}})</button><br>
                                 <button data-bs-toggle="modal" data-bs-target="#deleteprofile" class="btn btn-default accountbtn"><img src="assets/images/deletemyaccount.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Delete My Account ({{$register->delete_setting}})</button><br>
                                 <a href="/forgott" class="btn btn-default accountbtn"><img src="assets/images/changepassword.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Change My Password</a><br>
-                                <a href="/logout" class="btn btn-default accountbtn"><img src="assets/images/logout.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Logout</a>
+
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="accountsetting">
                                 <h5 class="text-center text-white mb-4">Privacy Settings</h5>
 
@@ -65,7 +65,19 @@
 
 
                                 <button data-bs-toggle="modal" data-bs-target="#contactprivacy" class="btn btn-default accountbtn"><img src="assets/images/contactprivacy.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Contact Privacy&nbsp;&nbsp;&nbsp;({{$register->cprivacy_setting}}) </button><br>
-                                <button data-bs-toggle="modal" data-bs-target="#bioprivacy" class="btn btn-default accountbtn"><img src="assets/images/biography.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Biography Privacy&nbsp;&nbsp;&nbsp;({{$register->bprivacy_setting}})</button>
+                                {{-- <button data-bs-toggle="modal" data-bs-target="#contactprivacy" class="btn btn-default accountbtn"><img src="assets/images/contactprivacy.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Privacy&nbsp;&nbsp;&nbsp;({{$register->cprivacy_setting}}) </button><br> --}}
+                                {{-- <button data-bs-toggle="modal" data-bs-target="#bioprivacy" class="btn btn-default accountbtn"><img src="assets/images/biography.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Biography Privacy&nbsp;&nbsp;&nbsp;({{$register->bprivacy_setting}})</button> --}}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="accountsetting">
+                                <h5 class="text-center text-white mb-4">Privacy Settings</h5>
+
+                                {{-- <button data-bs-toggle="modal" data-bs-target="#contactprivacy" class="btn btn-default accountbtn"><img src="assets/images/contactprivacy.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Contact Privacy&nbsp;&nbsp;&nbsp;({{$register->cprivacy_setting}}) </button><br> --}}
+                                <button data-bs-toggle="modal" data-bs-target="#requestprivacy" class="btn btn-default accountbtn"><img src="assets/images/contactprivacy.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Request Privacy</button><br>
+                                <button data-bs-toggle="modal" data-bs-target="#bioprivacy" class="btn btn-default accountbtn"><img src="assets/images/biography.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Biography Privacy&nbsp;&nbsp;&nbsp;({{$register->bprivacy_setting}})</button><br>
+                                <a href="/logout" class="btn btn-default accountbtn"><img src="assets/images/logout.png" class="img-fluid">&nbsp;&nbsp;&nbsp;Logout</a>
                             </div>
                         </div>
                     </div>
@@ -251,6 +263,64 @@
               </form>
 
 
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="requestprivacy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body ">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Varan ID</th>
+                        <th class="text-center">Accept</th>
+                        <th class="text-center">Reject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($getrequest)
+                        @foreach ($getrequest as $phnum)
+                            <tr>
+                                <td class="text-center">{{$phnum->partner_id}}</td>
+                                <td class="text-center">
+                                    <form method="POST" action="/acceptcontactview">
+                                        @csrf
+                                        <input type="hidden" name="requestid" value="{{$phnum->partner_id}}">
+                                            @if($phnum->status == 1)
+                                                <a class="btn btn-success btn-sm">Request Accepted</a>
+                                                @else
+                                                <button type="submit" class="btn btn-primary btn-sm">Accept</button>
+                                            @endif
+
+                                    </form>
+
+                                </td>
+                                <td class="text-center">
+                                    <form method="POST" action="/rejectcontactview">
+                                        @csrf
+                                        <input type="hidden" name="requestid" value="{{$phnum->partner_id}}">
+                                        @if($phnum->status == 2)
+                                        <a class="btn btn-danger btn-sm">Request Rejected</a>
+                                        @else
+                                        <button type="submit" class="btn btn-primary btn-sm">Reject</button>
+                                    @endif
+
+                                    </form>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
         </div>
 
       </div>

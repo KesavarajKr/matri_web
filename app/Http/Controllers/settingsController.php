@@ -30,8 +30,15 @@ class settingsController extends Controller
         ->select('*')
         ->where('varanid','=',$varanid)
         ->first();
-        // dd($images);
-        return view('pages.settings',compact('register','horoscope','images'));
+
+        $getrequest = DB::table('privacyphotolist')
+        ->select('*')
+        ->where('photoid','=',$varanid)
+
+        ->get();
+
+
+        return view('pages.settings',compact('register','horoscope','images','getrequest'));
     }
 
     /**
@@ -199,6 +206,62 @@ class settingsController extends Controller
         if($updatedata)
         {
             return redirect()->back()->with('success', 'Delete Request Send');
+        }
+    }
+
+    public function acceptcontactview(Request $request)
+    {
+        $requestid = $request->requestid;
+        $userid = session('LoggedUser');
+
+        $updatedata= DB::table('privacyphotolist')
+        ->where('partner_id','=',$requestid)
+        ->where('photoid','=',$userid)
+        ->update(array(
+            'status'=>1,
+        ));
+
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+        DB::table('trackings')->insert(
+            [
+                'user_varan_id' => $userid,
+                'partner_varan_id' => $requestid,
+                'purpose' => 'Request_Accept',
+                'created_at' => $datetime
+            ]);
+
+        if($updatedata)
+        {
+            return redirect()->back()->with('success', 'Request Accepted');
+        }
+    }
+
+    public function rejectcontactview(Request $request)
+    {
+        $requestid = $request->requestid;
+        $userid = session('LoggedUser');
+
+        $updatedata= DB::table('privacyphotolist')
+        ->where('partner_id','=',$requestid)
+        ->where('photoid','=',$userid)
+        ->update(array(
+            'status'=>2,
+        ));
+
+        date_default_timezone_set("Asia/Kolkata");
+        $datetime = date('Y-m-d h:i:s');
+        DB::table('trackings')->insert(
+            [
+                'user_varan_id' => $userid,
+                'partner_varan_id' => $requestid,
+                'purpose' => 'Request_Reject',
+                'created_at' => $datetime
+            ]);
+
+        if($updatedata)
+        {
+            return redirect()->back()->with('success', 'Request Rejected');
         }
     }
 }
